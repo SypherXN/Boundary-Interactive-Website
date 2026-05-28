@@ -56,14 +56,15 @@ If verification fails:
 ## Step 3 — Submit sitemap
 
 1. In Search Console, open the verified property.
-2. **Sitemaps** → enter **`sitemap-index.xml`** only (not `sitemap.xml` — that file does not exist).
-3. Submit.
+2. **Sitemaps** → enter **`sitemap.xml`** (not `sitemap-index.xml`).
+3. Property must be **URL prefix**: `https://sypherxn.github.io/Boundary-Interactive-Website/` (not a Domain property).
+4. Submit.
 
 **How long?** Google fetching the sitemap is usually **a few minutes to 1 hour** once the URL returns 200. Indexing all pages can take **days to weeks** (normal for a new site).
 
 **If status is “Couldn’t fetch”:** open  
-https://sypherxn.github.io/Boundary-Interactive-Website/sitemap-index.xml  
-in your browser — you should see XML. If yes, delete the sitemap row in Search Console, wait 5 minutes, and submit `sitemap-index.xml` again.
+https://sypherxn.github.io/Boundary-Interactive-Website/sitemap.xml  
+in your browser — you should see a `<urlset>` list of pages. Delete old sitemap rows in Search Console, wait 5 minutes, and submit **`sitemap.xml`** again.
 
 ---
 

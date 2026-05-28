@@ -1,0 +1,99 @@
+---
+import { studio } from "../data/site";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = studio.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/boundary-interactive-icon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/">
+          <img class="brand-icon" src="/boundary-interactive-icon.svg" alt="Boundary Interactive logo icon" />
+          <span>
+            <span class="brand-name">{studio.name}</span>
+            <span class="brand-tag">Indie Game Studio</span>
+          </span>
+        </a>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/game">Game</a></li>
+            <li><a href="/devlog">Devlog</a></li>
+            <li><a href="/about">Studio & Team</a></li>
+            <li><a href="/press">Press</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p class="muted">© {new Date().getFullYear()} {studio.legalName}</p>
+        <div class="footer-links" aria-label="Studio links">
+          <a
+            class="footer-icon-link"
+            href="mailto:flyexterminatorgame@gmail.com"
+            aria-label="Email Fly Exterminator team"
+            title="Email"
+          >
+            <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M20 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm-.4 2L12 12.4 4.4 7h15.2ZM4 17V9.3l7.4 5.2a1 1 0 0 0 1.2 0L20 9.3V17H4Z"
+              />
+            </svg>
+          </a>
+          <a
+            class="footer-icon-link"
+            href="https://www.linkedin.com/company/boundary-interactive-llc/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Boundary Interactive on LinkedIn"
+            title="LinkedIn"
+          >
+            <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M6.94 8.5a1.68 1.68 0 1 1 0-3.36 1.68 1.68 0 0 1 0 3.36ZM8.38 19H5.5V9.67h2.88V19ZM19 19h-2.88v-4.8c0-1.14-.02-2.61-1.59-2.61-1.6 0-1.85 1.25-1.85 2.53V19H9.8V9.67h2.76v1.27h.04c.39-.73 1.32-1.5 2.72-1.5 2.9 0 3.44 1.91 3.44 4.39V19Z"
+              />
+            </svg>
+          </a>
+          <a
+            class="footer-icon-link"
+            href="https://www.youtube.com/@FlyExterminatorGame"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Fly Exterminator on YouTube"
+            title="YouTube"
+          >
+            <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M21.58 7.19a2.87 2.87 0 0 0-2.02-2.03C17.78 4.67 12 4.67 12 4.67s-5.78 0-7.56.49A2.87 2.87 0 0 0 2.42 7.2C1.94 8.98 1.94 12 1.94 12s0 3.02.48 4.8a2.87 2.87 0 0 0 2.02 2.03c1.78.49 7.56.49 7.56.49s5.78 0 7.56-.49a2.87 2.87 0 0 0 2.02-2.03c.48-1.78.48-4.8.48-4.8s0-3.02-.48-4.8ZM10.17 14.75V9.25L14.92 12l-4.75 2.75Z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

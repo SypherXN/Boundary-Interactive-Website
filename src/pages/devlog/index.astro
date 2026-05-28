@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { formatDateUTC } from "../../utils/date";
+
+const posts = (await getCollection("devlogs")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title="Boundary Interactive | Devlog">
+  <section class="hero">
+    <h1>Devlog</h1>
+    <p>Development updates from Boundary Interactive as Fly Exterminator approaches launch.</p>
+  </section>
+
+  <section class="grid">
+    {posts.map((post) => (
+      <article class="panel">
+        <h2><a href={`/devlog/${post.id}/`}>{post.data.title}</a></h2>
+        <p class="muted">{formatDateUTC(post.data.date)} • {post.data.tags.join(", ")}</p>
+        <p>{post.data.summary}</p>
+      </article>
+    ))}
+  </section>
+</Layout>

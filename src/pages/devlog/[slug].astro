@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import { formatDateUTC } from "../../utils/date";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("devlogs");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`Devlog | ${post.data.title}`} description={post.data.summary}>
+  <article class="panel devlog-entry">
+    <p class="muted">{formatDateUTC(post.data.date)} • {post.data.tags.join(", ")}</p>
+    <h1>{post.data.title}</h1>
+    <Content />
+  </article>
+</Layout>

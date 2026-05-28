@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { game, studio } from "../data/site";
+import { getCollection } from "astro:content";
+
+const assets = await getCollection("pressAssets");
+---
+
+<Layout title="Boundary Interactive | Press Kit">
+  <section class="hero">
+    <h1>Press Kit</h1>
+    <p>
+      <strong>{game.title}</strong> is a mixed-reality action-simulation game from
+      <strong> {studio.legalName}</strong>, currently listed as {game.status} for {game.releaseWindow}.
+    </p>
+    <img
+      class="showcase-image"
+      src="/fly-exterminator-cover-wide.png"
+      alt="Fly Exterminator wide hero cover art for press usage."
+    />
+  </section>
+
+  <section class="panel">
+    <h2>One-Line Pitch</h2>
+    <p>Catch virtual flies in your real room using mixed-reality gameplay on Meta Quest 3.</p>
+    <h2>Short Description</h2>
+    <p>
+      Fly Exterminator is an arcade-style mixed-reality game where players chase flies integrated
+      into their physical environment through Quest scene understanding.
+    </p>
+    <h2>Official Links</h2>
+    <ul>
+      <li><a href={game.storeUrl}>Meta Store listing</a></li>
+      <li><a href="/game">Official game page</a></li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Press Assets</h2>
+    <ul>
+      {assets.map((asset) => (
+        <li>
+          <a href={asset.data.url}>{asset.data.label}</a> ({asset.data.type})
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Press Contact</h2>
+    <p>
+      Email:
+      <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>
+    </p>
+    <p class="muted">You can also use our LinkedIn and official channels listed on the Contact page.</p>
+    <div class="btn-row">
+      <a class="button secondary" href="/contact">Open contact page</a>
+    </div>
+  </section>
+</Layout>

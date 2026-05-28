@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { game, studio } from "../data/site";
+---
+
+<Layout title="Boundary Interactive | Home">
+  <section class="home-logo-stage">
+    <img class="studio-wordmark" src="/boundary-interactive-wordmark.svg" alt="Boundary Interactive full logo." />
+  </section>
+
+  <section class="hero">
+    <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
+    <h1>{game.title}</h1>
+    <p>{game.pitch}</p>
+    <img
+      class="showcase-image"
+      src="/fly-exterminator-cover-wide.png"
+      alt="Fly Exterminator wide hero cover art."
+    />
+    <div class="btn-row">
+      <a class="button" href={game.storeUrl}>Wishlist on Meta</a>
+      <a class="button secondary" href="/game">Explore the game</a>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>Studio</h2>
+      <p>{studio.description}</p>
+    </article>
+    <article class="panel">
+      <h2>Latest Development</h2>
+      <p>
+        Fly Exterminator is being prepared for release with mixed-reality gameplay tuned for short,
+        replayable sessions.
+      </p>
+    </article>
+    <article class="panel">
+      <h2>Follow Development</h2>
+      <p>Track updates and launch status on our Meta listing and press kit.</p>
+      <div class="btn-row">
+        <a class="button secondary" href={game.storeUrl}>Meta store page</a>
+        <a class="button secondary" href="/press">Press kit</a>
+      </div>
+    </article>
+  </section>
+</Layout>

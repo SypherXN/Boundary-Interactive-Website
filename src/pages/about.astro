@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { studio, teamMembers } from "../data/site";
+---
+
+<Layout title="Boundary Interactive | Studio & Team">
+  <section class="hero">
+    <h1>Studio & Team</h1>
+    <p>
+      {studio.name} is a two-person indie studio focused on mixed-reality game development.
+      Our current game is <strong>Fly Exterminator</strong>.
+    </p>
+  </section>
+
+  <section class="grid">
+    {teamMembers.map((member) => (
+      <article class="panel team-card">
+        <img
+          class={`team-photo ${member.name === "Matthew Tran" ? "team-photo-matthew" : ""}`}
+          src={member.photo}
+          alt={`${member.name} headshot`}
+        />
+        <h2>{member.name}</h2>
+        <p class="muted">{member.role}</p>
+        <p>{member.bio}</p>
+        <p><strong>Responsibilities:</strong> {member.responsibilities}</p>
+        <p>
+          <strong>Links:</strong>
+          {member.links.map((link, index) => (
+            <>
+              {index > 0 && " • "}
+              <a href={link.href}>{link.label}</a>
+            </>
+          ))}
+        </p>
+      </article>
+    ))}
+  </section>
+
+  <section class="panel">
+    <h2>How We Work</h2>
+    <p>
+      As a two-person studio, we collaborate closely across design and development. We test ideas
+      quickly, evaluate with playtests, and iterate toward the most fun and polished player
+      experience possible for each production milestone.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>USC Games Expo 2026</h2>
+    <figure class="about-expo-figure">
+      <img
+        src="/usc-games-expo-2026.png"
+        alt="Matthew Tran and Chaeho Shin presenting Fly Exterminator at USC Games Expo 2026."
+        class="showcase-image"
+      />
+      <figcaption class="about-expo-caption">
+        Presenting Fly Exterminator at USC Games Expo 2026.
+      </figcaption>
+    </figure>
+  </section>
+</Layout>

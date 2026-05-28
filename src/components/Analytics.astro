@@ -1,22 +1,17 @@
 ---
-import { gaMeasurementId as defaultMeasurementId } from "../data/site";
+import { gaMeasurementId } from "../data/site";
 
 /**
- * Google tag (gtag.js) — always in production HTML so Search Console can verify via Google Analytics.
- * Optional PUBLIC_GA_MEASUREMENT_ID overrides the default from site.ts.
+ * Exact gtag.js snippet format required by Search Console (Google Analytics verification).
+ * Must stay in <head> with literal gtag('config', 'G-...') — no bundled/variable wrappers.
  */
-const envId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const measurementId =
-  typeof envId === "string" && envId.startsWith("G-") ? envId : defaultMeasurementId;
+const gtagLoader = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
+const gtagInit = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}');`;
 ---
 
 <!-- Google tag (gtag.js) -->
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
-<script is:inline define:vars={{ measurementId }}>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-  gtag("config", measurementId);
-</script>
+<script async src={gtagLoader}></script>
+<script is:inline set:html={gtagInit}></script>

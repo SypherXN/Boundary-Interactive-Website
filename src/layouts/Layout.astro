@@ -45,6 +45,7 @@ const isArticle = ogType === "article";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <Analytics />
     <link rel="icon" type="image/svg+xml" href={withBase("/boundary-interactive-icon.svg")} />
     <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} sizes="180x180" />
     <meta name="generator" content={Astro.generator} />
@@ -52,7 +53,6 @@ const isArticle = ogType === "article";
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <Analytics />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sypherxn.github.io/Boundary-Interactive-Website/sitemap.xml

@@ -1,0 +1,29 @@
+---
+import { withBase } from "../utils/withBase";
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: "lazy" | "eager";
+}
+
+const { src, alt, width, height, class: className, loading = "lazy" } = Astro.props;
+const pngSrc = withBase(src);
+const webpSrc = withBase(src.replace(/\.(png|jpe?g)$/i, ".webp"));
+---
+
+<picture>
+  <source srcset={webpSrc} type="image/webp" />
+  <img
+    src={pngSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    decoding="async"
+  />
+</picture>

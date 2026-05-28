@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { studio, teamMembers } from "../data/site";
+import { externalBacklinkChecklist, game, siteUrl, studio, teamMembers } from "../data/site";
+import { ogImages, pageSeo } from "../data/seo";
 import { withBase } from "../utils/withBase";
 
 const mappedOfficialLinks = studio.socialLinks.map((link) => ({
@@ -9,39 +10,71 @@ const mappedOfficialLinks = studio.socialLinks.map((link) => ({
 }));
 ---
 
-<Layout title="Boundary Interactive | Contact">
+<Layout
+  title={pageSeo.contact.title}
+  description={pageSeo.contact.description}
+  ogImage={ogImages.default.path}
+>
   <section class="hero">
     <h1>Contact</h1>
     <p>
       Reach out for press, business, or collaboration inquiries about Boundary Interactive and
-      Fly Exterminator.
+      <a href={withBase("/game")}>{game.title}</a>.
     </p>
   </section>
 
   <section class="panel">
-    <h2>Email</h2>
+    <h2>Studio Email</h2>
     <p>
       <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>
     </p>
+  </section>
+
+  <section class="panel">
     <h2>Official Links</h2>
     <ul>
       {mappedOfficialLinks.map((link) => (
-        <li><a href={link.href}>{link.label}</a></li>
+        <li>
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))}
+      <li><a href={withBase("/devlog")}>Fly Exterminator devlog</a></li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Link This Site From Your Channels</h2>
+    <p>
+      Paste our official website URL into external profiles so players and press can find the
+      <a href={withBase("/game")}>Fly Exterminator game page</a>, devlog, and press kit:
+    </p>
+    <p>
+      <strong><a href={siteUrl}>{siteUrl}</a></strong>
+    </p>
+    <ul>
+      {externalBacklinkChecklist.map((item) => (
+        <li>
+          <strong>{item.channel}</strong> — {item.field}
+          (<a href={item.profileUrl}>open profile</a>)
+        </li>
       ))}
     </ul>
-    <h2>Team Links</h2>
-    <ul>
-      {teamMembers.map((member) => (
-        <li>
-          <strong>{member.name}:</strong>{" "}
+  </section>
+
+  <section class="panel">
+    <h2>Team Contacts</h2>
+    {teamMembers.map((member) => (
+      <div>
+        <h3>{member.name}</h3>
+        <p>
           {member.links.map((link, index) => (
             <>
               {index > 0 && " • "}
               <a href={link.href}>{link.label}</a>
             </>
           ))}
-        </li>
-      ))}
-    </ul>
+        </p>
+      </div>
+    ))}
   </section>
 </Layout>

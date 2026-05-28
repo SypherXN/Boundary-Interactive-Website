@@ -1,3 +1,36 @@
+/** Canonical launch + studio data. Update here when store status or links change. */
+
+const youtubeTrailerId = "pCl-uN2TTYY";
+
+export const links = {
+  metaStore: "https://www.meta.com/experiences/fly-exterminator/26967497566216109",
+  youtubeChannel: "https://www.youtube.com/@FlyExterminatorGame",
+  youtubeTrailer: `https://www.youtube.com/watch?v=${youtubeTrailerId}`,
+  linkedinCompany: "https://www.linkedin.com/company/boundary-interactive-llc/"
+} as const;
+
+/** Public site URL (GitHub Pages). Use in external channel bios for backlinks. */
+export const siteUrl = "https://sypherxn.github.io/Boundary-Interactive-Website/";
+
+/** Where to paste `siteUrl` on external profiles (manual off-site SEO). */
+export const externalBacklinkChecklist = [
+  {
+    channel: "LinkedIn Company Page",
+    field: "Website",
+    profileUrl: links.linkedinCompany
+  },
+  {
+    channel: "YouTube — @FlyExterminatorGame",
+    field: "About → Links → Official website",
+    profileUrl: links.youtubeChannel
+  },
+  {
+    channel: "Meta Store listing",
+    field: "Developer / support links where available",
+    profileUrl: links.metaStore
+  }
+] as const;
+
 export const studio = {
   name: "Boundary Interactive",
   legalName: "Boundary Interactive LLC",
@@ -5,14 +38,8 @@ export const studio = {
     "Boundary Interactive is a two-person indie game studio building mixed-reality games for Meta Quest.",
   contactEmail: "flyexterminatorgame@gmail.com",
   socialLinks: [
-    {
-      label: "Boundary Interactive LinkedIn",
-      href: "https://www.linkedin.com/company/boundary-interactive-llc/"
-    },
-    {
-      label: "Meta Store",
-      href: "https://www.meta.com/experiences/fly-exterminator/26967497566216109"
-    },
+    { label: "Boundary Interactive LinkedIn", href: links.linkedinCompany },
+    { label: "Meta Store", href: links.metaStore },
     { label: "Press Kit", href: "/press" }
   ]
 };
@@ -54,7 +81,32 @@ export const game = {
   platform: "Meta Quest 3",
   genres: ["Arcade", "Action", "Simulation"],
   rating: "Everyone",
-  storeUrl: "https://www.meta.com/experiences/fly-exterminator/26967497566216109",
+  storeUrl: links.metaStore,
   pitch:
-    "Catch virtual flies in your real room with quick-reflex mixed-reality gameplay built for Meta Quest 3."
+    "Catch virtual flies in your real room with quick-reflex mixed-reality gameplay built for Meta Quest 3.",
+  shortDescription:
+    "Fly Exterminator is an arcade-style mixed-reality game where players chase flies integrated into their physical environment through Quest scene understanding.",
+  trailerEmbedUrl: `https://www.youtube.com/embed/${youtubeTrailerId}`
 };
+
+/** Press kit download/list links (paths are under /public). */
+export const pressKitAssets = [
+  {
+    label: "Boundary Interactive Logo Pack",
+    href: "/fly-exterminator-logo.png",
+    type: "Logos"
+  },
+  {
+    label: "Fly Exterminator Screenshots",
+    href: links.metaStore,
+    type: "Screenshots"
+  },
+  {
+    label: "Fly Exterminator Trailer Listing",
+    href: links.youtubeTrailer,
+    type: "Trailer"
+  }
+] as const;
+
+/** Default social preview image (1200×630, path under /public). */
+export const defaultOgImage = "/og-social.png";

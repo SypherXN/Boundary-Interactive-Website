@@ -1,6 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { game } from "../../data/site";
 import { getCollection } from "astro:content";
+import { ogImages, pageSeo } from "../../data/seo";
 import { formatDateUTC } from "../../utils/date";
 import { withBase } from "../../utils/withBase";
 
@@ -9,19 +11,37 @@ const posts = (await getCollection("devlogs")).sort(
 );
 ---
 
-<Layout title="Boundary Interactive | Devlog">
+<Layout
+  title={pageSeo.devlogIndex.title}
+  description={pageSeo.devlogIndex.description}
+  ogImage={ogImages.default.path}
+>
   <section class="hero">
     <h1>Devlog</h1>
-    <p>Development updates from Boundary Interactive as Fly Exterminator approaches launch.</p>
+    <p>
+      Development updates for <a href={withBase("/game")}>{game.title}</a> on {game.platform} as
+      Boundary Interactive approaches launch. Press and media can use the
+      <a href={withBase("/press")}>Fly Exterminator press kit</a>.
+    </p>
   </section>
 
   <section class="grid">
     {posts.map((post) => (
       <article class="panel">
-        <h2><a href={withBase(`/devlog/${post.id}/`)}>{post.data.title}</a></h2>
-        <p class="muted">{formatDateUTC(post.data.date)} • {post.data.tags.join(", ")}</p>
+        <p class="muted">{formatDateUTC(post.data.date)}</p>
+        <h2>
+          <a href={withBase(`/devlog/${post.id}/`)}>{post.data.title}</a>
+        </h2>
         <p>{post.data.summary}</p>
       </article>
     ))}
+  </section>
+
+  <section class="panel">
+    <p>
+      <a href={withBase("/game")}>Fly Exterminator game page</a>
+      •
+      <a href={game.storeUrl}>Meta Quest store listing</a>
+    </p>
   </section>
 </Layout>

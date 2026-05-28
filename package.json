@@ -8,11 +8,16 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "images:optimize": "node scripts/optimize-images.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.3.8"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

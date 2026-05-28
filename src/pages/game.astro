@@ -1,28 +1,44 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
 import { game } from "../data/site";
+import { images } from "../data/images";
+import { ogImages, pageSeo } from "../data/seo";
 import { getCollection } from "astro:content";
+import { buildVideoGameSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
 
 const [gameEntry] = await getCollection("games");
+const posts = (await getCollection("devlogs")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const [latestDevlog] = posts;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
-<Layout title="Fly Exterminator | Game" description={game.pitch}>
+<Layout
+  title={pageSeo.game.title}
+  description={pageSeo.game.description}
+  ogImage={ogImages.game.path}
+  jsonLd={buildVideoGameSchema(Astro.site, canonicalURL)}
+>
   <section class="hero">
     <p class="status">{game.status} • {game.releaseWindow}</p>
     <h1>{game.title}</h1>
     <p>{game.pitch}</p>
     <p class="muted">Genres: {game.genres.join(" / ")} • Rating: {game.rating}</p>
     <figure class="media-block">
-      <img
+      <OptimizedImage
         class="showcase-image"
-        src={withBase("/fly-exterminator-hero-art.png")}
+        src={images.heroArt.src}
         alt="Fly Exterminator key art showing player swatting a fly in a living room."
+        width={images.heroArt.width}
+        height={images.heroArt.height}
       />
     </figure>
     <div class="btn-row">
       <a class="button" href={game.storeUrl}>Wishlist on Meta</a>
-      <a class="button secondary" href={withBase("/press")}>Press info</a>
+      <a class="button secondary" href={withBase("/press")}>Fly Exterminator press kit</a>
     </div>
   </section>
 
@@ -31,7 +47,7 @@ const [gameEntry] = await getCollection("games");
     <figure class="media-block">
       <div class="video-embed">
         <iframe
-          src="https://www.youtube.com/embed/pCl-uN2TTYY"
+          src={game.trailerEmbedUrl}
           title="Fly Exterminator Official Trailer"
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -53,20 +69,24 @@ const [gameEntry] = await getCollection("games");
       <li>Time-trial style score chasing and replayability.</li>
     </ul>
     <figure class="media-block">
-      <img
-        src={withBase("/meta-quest-room-scanning.png")}
+      <OptimizedImage
+        src={images.roomScanning.src}
         alt="Meta Quest 3 room scanning overlay used for Fly Exterminator mixed-reality development."
         class="showcase-image"
+        width={images.roomScanning.width}
+        height={images.roomScanning.height}
       />
       <figcaption class="media-caption">
         Room-scanning tests that helped anchor fly behavior to real-world surfaces.
       </figcaption>
     </figure>
     <figure class="media-block">
-      <img
-        src={withBase("/fly-exterminator-ui.png")}
+      <OptimizedImage
+        src={images.gameUi.src}
         alt="Fly Exterminator in-game mixed-reality menu UI showing time trial options and scoring instructions."
         class="showcase-image"
+        width={images.gameUi.width}
+        height={images.gameUi.height}
       />
       <figcaption class="media-caption">
         Newest in-game UI tuned for quick setup, readability, and competitive score chasing.
@@ -76,11 +96,30 @@ const [gameEntry] = await getCollection("games");
 
   <section class="panel">
     <h2>Player FAQ</h2>
-    <p><strong>Platform:</strong> Meta Quest 3</p>
-    <p><strong>Release status:</strong> Coming soon (target window June 2026).</p>
-    <p><strong>Who is making it?</strong> Boundary Interactive, founded by Matthew Tran and Chaeho Shin.</p>
-    <p><strong>Where can I follow updates?</strong> Use the Meta store listing and press kit linked below.</p>
+    <p><strong>Platform:</strong> {game.platform}</p>
+    <p><strong>Release status:</strong> {game.status} (target window {game.releaseWindow}).</p>
+    <p>
+      <strong>Who is making it?</strong>
+      <a href={withBase("/about")}>Boundary Interactive</a>, founded by Matthew Tran and Chaeho Shin.
+    </p>
+    <p>
+      <strong>Where can I follow updates?</strong>
+      Use the <a href={game.storeUrl}>Meta store listing</a>,
+      <a href={withBase("/devlog")}>devlog</a>, and
+      <a href={withBase("/press")}>press kit</a>.
+    </p>
   </section>
+
+  {latestDevlog && (
+    <section class="panel">
+      <h2>Latest Devlog</h2>
+      <p>
+        <a href={withBase(`/devlog/${latestDevlog.id}/`)}>{latestDevlog.data.title}</a>
+        — {latestDevlog.data.summary}
+      </p>
+      <p><a href={withBase("/devlog")}>View all Fly Exterminator devlog posts</a></p>
+    </section>
+  )}
 
   {gameEntry && (
     <section class="panel">

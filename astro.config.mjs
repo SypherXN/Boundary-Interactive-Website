@@ -1,5 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import { getDevlogLastmodMap } from './src/utils/devlogLastmod.ts';
+
+const devlogLastmod = getDevlogLastmodMap();
 
 function prefixRootRelativeUrls(basePath = '/') {
   const normalizedBase = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
@@ -16,6 +20,11 @@ function prefixRootRelativeUrls(basePath = '/') {
               node.properties[key] = `${normalizedBase}${value}`;
             }
           });
+
+          if (node.tagName === 'img') {
+            node.properties.loading = node.properties.loading ?? 'lazy';
+            node.properties.decoding = node.properties.decoding ?? 'async';
+          }
         }
 
         if (Array.isArray(node.children)) {
@@ -30,8 +39,23 @@ function prefixRootRelativeUrls(basePath = '/') {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://boundaryinteractive.github.io',
+  site: 'https://sypherxn.github.io',
   base: process.env.BASE_PATH ?? '/',
+  integrations: [
+    sitemap({
+      filter: (page) => !page.endsWith('/rss.xml'),
+      serialize(item) {
+        const devlogMatch = item.url.match(/\/devlog\/([^/]+)\/?$/);
+        if (devlogMatch) {
+          const lastmod = devlogLastmod.get(devlogMatch[1]);
+          if (lastmod) {
+            item.lastmod = lastmod;
+          }
+        }
+        return item;
+      },
+    }),
+  ],
   markdown: {
     rehypePlugins: [prefixRootRelativeUrls(process.env.BASE_PATH ?? '/')],
   },

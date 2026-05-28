@@ -1,63 +1,66 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { studio, teamMembers } from "../data/site";
+import OptimizedImage from "../components/OptimizedImage.astro";
+import { game, studio, teamMembers } from "../data/site";
+import { images } from "../data/images";
+import { ogImages, pageSeo } from "../data/seo";
+import { buildOrganizationSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
+
+const teamImageByPhoto: Record<string, (typeof images)[keyof typeof images]> = {
+  "/matthew-tran.png": images.teamMatthew,
+  "/chaeho-shin.png": images.teamChaeho
+};
 ---
 
-<Layout title="Boundary Interactive | Studio & Team">
+<Layout
+  title={pageSeo.about.title}
+  description={pageSeo.about.description}
+  ogImage={ogImages.default.path}
+  jsonLd={buildOrganizationSchema(Astro.site)}
+>
   <section class="hero">
     <h1>Studio & Team</h1>
     <p>
       {studio.name} is a two-person indie studio focused on mixed-reality game development.
-      Our current game is <strong>Fly Exterminator</strong>.
+      Our current title is <a href={withBase("/game")}>{game.title}</a> for {game.platform}.
     </p>
   </section>
 
   <section class="grid">
-    {teamMembers.map((member) => (
-      <article class="panel team-card">
-        <img
-          class={`team-photo ${member.name === "Matthew Tran" ? "team-photo-matthew" : ""}`}
-          src={withBase(member.photo)}
-          alt={`${member.name} headshot`}
-        />
-        <h2>{member.name}</h2>
-        <p class="muted">{member.role}</p>
-        <p>{member.bio}</p>
-        <p><strong>Responsibilities:</strong> {member.responsibilities}</p>
-        <p>
-          <strong>Links:</strong>
-          {member.links.map((link, index) => (
-            <>
-              {index > 0 && " • "}
-              <a href={link.href}>{link.label}</a>
-            </>
-          ))}
-        </p>
-      </article>
-    ))}
+    {teamMembers.map((member) => {
+      const photo = teamImageByPhoto[member.photo] ?? images.teamMatthew;
+      return (
+        <article class="panel team-card">
+          <OptimizedImage
+            class="team-photo"
+            src={photo.src}
+            alt={`${member.name} headshot`}
+            width={photo.width}
+            height={photo.height}
+          />
+          <h2>{member.name}</h2>
+          <p class="muted">{member.role}</p>
+          <p>{member.bio}</p>
+          <p>{member.responsibilities}</p>
+          <p>
+            {member.links.map((link, index) => (
+              <>
+                {index > 0 && " • "}
+                <a href={link.href}>{link.label}</a>
+              </>
+            ))}
+          </p>
+        </article>
+      );
+    })}
   </section>
 
   <section class="panel">
-    <h2>How We Work</h2>
     <p>
-      As a two-person studio, we collaborate closely across design and development. We test ideas
-      quickly, evaluate with playtests, and iterate toward the most fun and polished player
-      experience possible for each production milestone.
+      <a href={withBase("/devlog")}>Fly Exterminator devlog</a>
+      •
+      <a href={withBase("/press")}>Press kit</a>
     </p>
-  </section>
-
-  <section class="panel">
-    <h2>USC Games Expo 2026</h2>
-    <figure class="about-expo-figure">
-      <img
-        src={withBase("/usc-games-expo-2026.png")}
-        alt="Matthew Tran and Chaeho Shin presenting Fly Exterminator at USC Games Expo 2026."
-        class="showcase-image"
-      />
-      <figcaption class="about-expo-caption">
-        Presenting Fly Exterminator at USC Games Expo 2026.
-      </figcaption>
-    </figure>
   </section>
 </Layout>

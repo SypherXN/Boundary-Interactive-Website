@@ -1,7 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
+import { devlogAuthors, devlogPostSeo, ogImages } from "../../data/seo";
 import { formatDateUTC } from "../../utils/date";
+import { buildBlogPostingSchema } from "../../utils/jsonLd";
+import { withBase } from "../../utils/withBase";
 
 export async function getStaticPaths() {
   const posts = await getCollection("devlogs");
@@ -13,12 +16,36 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const seo = devlogPostSeo(post.data.title, post.data.summary);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
-<Layout title={`Devlog | ${post.data.title}`} description={post.data.summary}>
+<Layout
+  title={seo.title}
+  description={seo.description}
+  ogImage={ogImages.default.path}
+  ogType="article"
+  articlePublishedTime={post.data.date}
+  articleModifiedTime={post.data.date}
+  articleAuthors={devlogAuthors}
+  jsonLd={buildBlogPostingSchema({
+    site: Astro.site,
+    pageUrl: canonicalURL,
+    headline: post.data.title,
+    description: post.data.summary,
+    datePublished: post.data.date
+  })}
+>
   <article class="panel devlog-entry">
     <p class="muted">{formatDateUTC(post.data.date)} • {post.data.tags.join(", ")}</p>
     <h1>{post.data.title}</h1>
     <Content />
+    <p class="devlog-nav">
+      <a href={withBase("/game")}>Fly Exterminator game page</a>
+      •
+      <a href={withBase("/devlog")}>All devlog posts</a>
+      •
+      <a href={withBase("/press")}>Press kit</a>
+    </p>
   </article>
 </Layout>

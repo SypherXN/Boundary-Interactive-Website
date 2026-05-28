@@ -1,47 +1,58 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { game, studio } from "../data/site";
-import { getCollection } from "astro:content";
+import OptimizedImage from "../components/OptimizedImage.astro";
+import { game, links, pressKitAssets, studio } from "../data/site";
+import { images } from "../data/images";
+import { ogImages, pageSeo } from "../data/seo";
 import { withBase } from "../utils/withBase";
 
-const assets = await getCollection("pressAssets");
+function pressAssetHref(href: string) {
+  return href.startsWith("/") ? withBase(href) : href;
+}
 ---
 
-<Layout title="Boundary Interactive | Press Kit">
+<Layout
+  title={pageSeo.press.title}
+  description={pageSeo.press.description}
+  ogImage={ogImages.press.path}
+>
   <section class="hero">
     <h1>Press Kit</h1>
     <p>
       <strong>{game.title}</strong> is a mixed-reality action-simulation game from
       <strong> {studio.legalName}</strong>, currently listed as {game.status} for {game.releaseWindow}.
+      Visit the <a href={withBase("/game")}>official Fly Exterminator game page</a> for trailers and screenshots.
     </p>
-    <img
+    <OptimizedImage
       class="showcase-image"
-      src={withBase("/fly-exterminator-cover-wide.png")}
+      src={images.coverWide.src}
       alt="Fly Exterminator wide hero cover art for press usage."
+      width={images.coverWide.width}
+      height={images.coverWide.height}
     />
   </section>
 
   <section class="panel">
     <h2>One-Line Pitch</h2>
-    <p>Catch virtual flies in your real room using mixed-reality gameplay on Meta Quest 3.</p>
+    <p>{game.pitch}</p>
     <h2>Short Description</h2>
-    <p>
-      Fly Exterminator is an arcade-style mixed-reality game where players chase flies integrated
-      into their physical environment through Quest scene understanding.
-    </p>
+    <p>{game.shortDescription}</p>
     <h2>Official Links</h2>
     <ul>
       <li><a href={game.storeUrl}>Meta Store listing</a></li>
+      <li><a href={links.youtubeChannel}>YouTube channel</a></li>
+      <li><a href={links.youtubeTrailer}>Official trailer</a></li>
       <li><a href={withBase("/game")}>Official game page</a></li>
+      <li><a href={withBase("/devlog")}>Fly Exterminator devlog</a></li>
     </ul>
   </section>
 
   <section class="panel">
     <h2>Press Assets</h2>
     <ul>
-      {assets.map((asset) => (
+      {pressKitAssets.map((asset) => (
         <li>
-          <a href={asset.data.url}>{asset.data.label}</a> ({asset.data.type})
+          <a href={pressAssetHref(asset.href)}>{asset.label}</a> ({asset.type})
         </li>
       ))}
     </ul>
@@ -53,7 +64,10 @@ const assets = await getCollection("pressAssets");
       Email:
       <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>
     </p>
-    <p class="muted">You can also use our LinkedIn and official channels listed on the Contact page.</p>
+    <p class="muted">
+      You can also reach us via the
+      <a href={withBase("/contact")}>Boundary Interactive contact page</a>.
+    </p>
     <div class="btn-row">
       <a class="button secondary" href={withBase("/contact")}>Open contact page</a>
     </div>

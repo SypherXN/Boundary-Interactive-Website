@@ -374,6 +374,14 @@ li {
   line-height: 1.45;
 }
 
+.devlog-nav {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 @media (max-width: 720px) {
   .site-header .container {
     padding-top: 0.8rem;

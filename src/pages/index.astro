@@ -1,10 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
 import { game, studio } from "../data/site";
+import { images } from "../data/images";
+import { ogImages, pageSeo } from "../data/seo";
+import { buildOrganizationSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
 ---
 
-<Layout title="Boundary Interactive | Home">
+<Layout
+  title={pageSeo.home.title}
+  description={pageSeo.home.description}
+  ogImage={ogImages.default.path}
+  jsonLd={buildOrganizationSchema(Astro.site)}
+>
   <section class="home-logo-stage">
     <img class="studio-wordmark" src={withBase("/boundary-interactive-wordmark.svg")} alt="Boundary Interactive full logo." />
   </section>
@@ -13,14 +22,16 @@ import { withBase } from "../utils/withBase";
     <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
     <h1>{game.title}</h1>
     <p>{game.pitch}</p>
-    <img
+    <OptimizedImage
       class="showcase-image"
-      src={withBase("/fly-exterminator-cover-wide.png")}
+      src={images.coverWide.src}
       alt="Fly Exterminator wide hero cover art."
+      width={images.coverWide.width}
+      height={images.coverWide.height}
     />
     <div class="btn-row">
-      <a class="button" href={game.storeUrl}>Wishlist on Meta</a>
-      <a class="button secondary" href={withBase("/game")}>Explore the game</a>
+      <a class="button" href={game.storeUrl}>Wishlist Fly Exterminator on Meta</a>
+      <a class="button secondary" href={withBase("/game")}>Explore the Fly Exterminator game page</a>
     </div>
   </section>
 
@@ -28,17 +39,28 @@ import { withBase } from "../utils/withBase";
     <article class="panel">
       <h2>Studio</h2>
       <p>{studio.description}</p>
+      <p>
+        <a href={withBase("/about")}>Meet the Boundary Interactive team</a>.
+      </p>
     </article>
     <article class="panel">
       <h2>Latest Development</h2>
       <p>
-        Fly Exterminator is being prepared for release with mixed-reality gameplay tuned for short,
+        {game.title} is being prepared for release with mixed-reality gameplay tuned for short,
         replayable sessions.
+      </p>
+      <p>
+        <a href={withBase("/devlog")}>Read the Fly Exterminator devlog</a> for milestone updates.
       </p>
     </article>
     <article class="panel">
       <h2>Follow Development</h2>
-      <p>Track updates and launch status on our Meta listing and press kit.</p>
+      <p>
+        Track launch status on the
+        <a href={game.storeUrl}>Meta Quest store listing</a>
+        or browse the
+        <a href={withBase("/press")}>Fly Exterminator press kit</a>.
+      </p>
       <div class="btn-row">
         <a class="button secondary" href={game.storeUrl}>Meta store page</a>
         <a class="button secondary" href={withBase("/press")}>Press kit</a>

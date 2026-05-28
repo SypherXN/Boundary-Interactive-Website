@@ -10,21 +10,15 @@ Search Console verifies this site through **Google Analytics** — no HTML meta 
 
 ---
 
-## Step 1 — Deploy GA4 to production
+## Step 1 — Deploy (GA tag is built in automatically)
 
-The site loads the Google tag from `src/components/Analytics.astro` (in every page `<head>`).
+The Google tag (`G-21WBCSSXC4`) is included on every page from `src/data/site.ts` — no GitHub variable required.
 
-1. GitHub repo → **Settings** → **Secrets and variables** → **Actions** → **Variables**
-2. Add (or confirm):
+Push to `main` and wait for the **Deploy to GitHub Pages** workflow to finish.
 
-   | Name | Value |
-   |------|--------|
-   | `PUBLIC_GA_MEASUREMENT_ID` | `G-21WBCSSXC4` |
+Optional: set GitHub Actions variable `PUBLIC_GA_MEASUREMENT_ID` only if you need a different stream ID later.
 
-3. **Actions** → **Deploy to GitHub Pages** → **Re-run all jobs** (or push to `main`)
-4. After deploy, open the live site → **View page source** → search for `G-21WBCSSXC4` and `googletagmanager.com`
-
-**Local dev:** copy `.env.example` to `.env` with the same measurement ID.
+After deploy, open the live site → **View page source** → search for `G-21WBCSSXC4` and `googletagmanager.com`.
 
 ---
 

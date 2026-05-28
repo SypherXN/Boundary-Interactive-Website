@@ -1,23 +1,22 @@
 ---
+import { gaMeasurementId as defaultMeasurementId } from "../data/site";
+
 /**
- * Google Analytics 4 (gtag.js). Set PUBLIC_GA_MEASUREMENT_ID at build time.
- * Search Console can verify ownership via "Google Analytics" when this tag is live
- * and you use the same Google account with Administrator access on the GA property.
+ * Google tag (gtag.js) — always in production HTML so Search Console can verify via Google Analytics.
+ * Optional PUBLIC_GA_MEASUREMENT_ID overrides the default from site.ts.
  */
-const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const enabled = Boolean(measurementId && measurementId.startsWith("G-"));
+const envId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const measurementId =
+  typeof envId === "string" && envId.startsWith("G-") ? envId : defaultMeasurementId;
 ---
 
-{enabled && (
-  <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
-    <script is:inline define:vars={{ measurementId }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", measurementId);
-    </script>
-  </>
-)}
+<!-- Google tag (gtag.js) -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+<script is:inline define:vars={{ measurementId }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", measurementId);
+</script>

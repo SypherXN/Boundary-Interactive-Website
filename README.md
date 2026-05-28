@@ -40,7 +40,7 @@ The `games` content collection only stores long-form timeline text for the game 
 
 Both are **free**. Full step-by-step setup: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
 
-Set GitHub Actions **Variable** `PUBLIC_GA_MEASUREMENT_ID` to `G-21WBCSSXC4`, redeploy, then verify Search Console using **Google Analytics** (same Google account, Administrator on the GA property). Details: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
+Set GitHub Actions **Variable** `PUBLIC_GA_MEASUREMENT_ID` to `G-21WBCSSXC4`, redeploy, then verify Search Console using **Google Analytics** (same Google account, Administrator on the GA property). The tag is also baked into `src/data/site.ts` so it ships on every deploy. Details: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
 
 ## Deployment
 

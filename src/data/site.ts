@@ -12,6 +12,9 @@ export const links = {
 /** Public site URL (GitHub Pages). Use in external channel bios for backlinks. */
 export const siteUrl = "https://sypherxn.github.io/Boundary-Interactive-Website/";
 
+/** GA4 measurement ID (public in page source). Used for analytics and Search Console verification. */
+export const gaMeasurementId = "G-21WBCSSXC4";
+
 /** Where to paste `siteUrl` on external profiles (manual off-site SEO). */
 export const externalBacklinkChecklist = [
   {

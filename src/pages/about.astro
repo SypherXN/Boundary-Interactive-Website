@@ -33,11 +33,11 @@ const teamImageByPhoto: Record<string, (typeof images)[keyof typeof images]> = {
       return (
         <article class="panel team-card">
           <OptimizedImage
-            class="team-photo"
+            class={`team-photo ${member.name === "Matthew Tran" ? "team-photo-matthew" : ""}`}
             src={photo.src}
             alt={`${member.name} headshot`}
-            width={photo.width}
-            height={photo.height}
+            width={220}
+            height={220}
           />
           <h2>{member.name}</h2>
           <p class="muted">{member.role}</p>

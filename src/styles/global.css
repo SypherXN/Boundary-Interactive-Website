@@ -249,14 +249,20 @@ li {
   display: block;
 }
 
-.team-photo {
+.team-card picture {
+  display: block;
   width: 100%;
   max-width: 220px;
+  margin: 0 auto 0.75rem;
+}
+
+.team-photo {
+  width: 100%;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid var(--border);
-  margin: 0 auto 0.75rem;
 }
 
 .team-photo-matthew {

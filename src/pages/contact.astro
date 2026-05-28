@@ -1,6 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { studio, teamMembers } from "../data/site";
+import { withBase } from "../utils/withBase";
+
+const mappedOfficialLinks = studio.socialLinks.map((link) => ({
+  ...link,
+  href: link.href.startsWith("/") ? withBase(link.href) : link.href
+}));
 ---
 
 <Layout title="Boundary Interactive | Contact">
@@ -19,7 +25,7 @@ import { studio, teamMembers } from "../data/site";
     </p>
     <h2>Official Links</h2>
     <ul>
-      {studio.socialLinks.map((link) => (
+      {mappedOfficialLinks.map((link) => (
         <li><a href={link.href}>{link.label}</a></li>
       ))}
     </ul>

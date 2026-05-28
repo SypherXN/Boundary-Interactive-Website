@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { game, studio } from "../data/site";
+import { withBase } from "../utils/withBase";
 ---
 
 <Layout title="Boundary Interactive | Home">
   <section class="home-logo-stage">
-    <img class="studio-wordmark" src="/boundary-interactive-wordmark.svg" alt="Boundary Interactive full logo." />
+    <img class="studio-wordmark" src={withBase("/boundary-interactive-wordmark.svg")} alt="Boundary Interactive full logo." />
   </section>
 
   <section class="hero">
@@ -14,12 +15,12 @@ import { game, studio } from "../data/site";
     <p>{game.pitch}</p>
     <img
       class="showcase-image"
-      src="/fly-exterminator-cover-wide.png"
+      src={withBase("/fly-exterminator-cover-wide.png")}
       alt="Fly Exterminator wide hero cover art."
     />
     <div class="btn-row">
       <a class="button" href={game.storeUrl}>Wishlist on Meta</a>
-      <a class="button secondary" href="/game">Explore the game</a>
+      <a class="button secondary" href={withBase("/game")}>Explore the game</a>
     </div>
   </section>
 
@@ -40,7 +41,7 @@ import { game, studio } from "../data/site";
       <p>Track updates and launch status on our Meta listing and press kit.</p>
       <div class="btn-row">
         <a class="button secondary" href={game.storeUrl}>Meta store page</a>
-        <a class="button secondary" href="/press">Press kit</a>
+        <a class="button secondary" href={withBase("/press")}>Press kit</a>
       </div>
     </article>
   </section>

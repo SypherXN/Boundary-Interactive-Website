@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { game } from "../data/site";
 import { getCollection } from "astro:content";
+import { withBase } from "../utils/withBase";
 
 const [gameEntry] = await getCollection("games");
 ---
@@ -15,13 +16,13 @@ const [gameEntry] = await getCollection("games");
     <figure class="media-block">
       <img
         class="showcase-image"
-        src="/fly-exterminator-hero-art.png"
+        src={withBase("/fly-exterminator-hero-art.png")}
         alt="Fly Exterminator key art showing player swatting a fly in a living room."
       />
     </figure>
     <div class="btn-row">
       <a class="button" href={game.storeUrl}>Wishlist on Meta</a>
-      <a class="button secondary" href="/press">Press info</a>
+      <a class="button secondary" href={withBase("/press")}>Press info</a>
     </div>
   </section>
 
@@ -53,7 +54,7 @@ const [gameEntry] = await getCollection("games");
     </ul>
     <figure class="media-block">
       <img
-        src="/meta-quest-room-scanning.png"
+        src={withBase("/meta-quest-room-scanning.png")}
         alt="Meta Quest 3 room scanning overlay used for Fly Exterminator mixed-reality development."
         class="showcase-image"
       />
@@ -63,7 +64,7 @@ const [gameEntry] = await getCollection("games");
     </figure>
     <figure class="media-block">
       <img
-        src="/fly-exterminator-ui.png"
+        src={withBase("/fly-exterminator-ui.png")}
         alt="Fly Exterminator in-game mixed-reality menu UI showing time trial options and scoring instructions."
         class="showcase-image"
       />

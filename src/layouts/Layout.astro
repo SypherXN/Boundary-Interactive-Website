@@ -1,6 +1,7 @@
 ---
 import { studio } from "../data/site";
 import "../styles/global.css";
+import { withBase } from "../utils/withBase";
 
 interface Props {
   title: string;
@@ -15,7 +16,7 @@ const { title, description = studio.description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/boundary-interactive-icon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/boundary-interactive-icon.svg")} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -23,8 +24,8 @@ const { title, description = studio.description } = Astro.props;
   <body>
     <header class="site-header">
       <div class="container">
-        <a class="brand" href="/">
-          <img class="brand-icon" src="/boundary-interactive-icon.svg" alt="Boundary Interactive logo icon" />
+        <a class="brand" href={withBase("/")}>
+          <img class="brand-icon" src={withBase("/boundary-interactive-icon.svg")} alt="Boundary Interactive logo icon" />
           <span>
             <span class="brand-name">{studio.name}</span>
             <span class="brand-tag">Indie Game Studio</span>
@@ -32,12 +33,12 @@ const { title, description = studio.description } = Astro.props;
         </a>
         <nav aria-label="Main navigation">
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/game">Game</a></li>
-            <li><a href="/devlog">Devlog</a></li>
-            <li><a href="/about">Studio & Team</a></li>
-            <li><a href="/press">Press</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href={withBase("/")}>Home</a></li>
+            <li><a href={withBase("/game")}>Game</a></li>
+            <li><a href={withBase("/devlog")}>Devlog</a></li>
+            <li><a href={withBase("/about")}>Studio & Team</a></li>
+            <li><a href={withBase("/press")}>Press</a></li>
+            <li><a href={withBase("/contact")}>Contact</a></li>
           </ul>
         </nav>
       </div>

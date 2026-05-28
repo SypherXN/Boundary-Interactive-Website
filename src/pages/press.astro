@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { game, studio } from "../data/site";
 import { getCollection } from "astro:content";
+import { withBase } from "../utils/withBase";
 
 const assets = await getCollection("pressAssets");
 ---
@@ -15,7 +16,7 @@ const assets = await getCollection("pressAssets");
     </p>
     <img
       class="showcase-image"
-      src="/fly-exterminator-cover-wide.png"
+      src={withBase("/fly-exterminator-cover-wide.png")}
       alt="Fly Exterminator wide hero cover art for press usage."
     />
   </section>
@@ -31,7 +32,7 @@ const assets = await getCollection("pressAssets");
     <h2>Official Links</h2>
     <ul>
       <li><a href={game.storeUrl}>Meta Store listing</a></li>
-      <li><a href="/game">Official game page</a></li>
+      <li><a href={withBase("/game")}>Official game page</a></li>
     </ul>
   </section>
 
@@ -54,7 +55,7 @@ const assets = await getCollection("pressAssets");
     </p>
     <p class="muted">You can also use our LinkedIn and official channels listed on the Contact page.</p>
     <div class="btn-row">
-      <a class="button secondary" href="/contact">Open contact page</a>
+      <a class="button secondary" href={withBase("/contact")}>Open contact page</a>
     </div>
   </section>
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { studio, teamMembers } from "../data/site";
+import { withBase } from "../utils/withBase";
 ---
 
 <Layout title="Boundary Interactive | Studio & Team">
@@ -50,7 +51,7 @@ import { studio, teamMembers } from "../data/site";
     <h2>USC Games Expo 2026</h2>
     <figure class="about-expo-figure">
       <img
-        src="/usc-games-expo-2026.png"
+        src={withBase("/usc-games-expo-2026.png")}
         alt="Matthew Tran and Chaeho Shin presenting Fly Exterminator at USC Games Expo 2026."
         class="showcase-image"
       />

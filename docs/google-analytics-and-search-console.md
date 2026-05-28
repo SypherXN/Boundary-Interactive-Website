@@ -3,7 +3,7 @@
 Use **one Google account** for both tools. Both are **free**.
 
 **Live site URL:** `https://sypherxn.github.io/Boundary-Interactive-Website/`  
-**Sitemap:** `https://sypherxn.github.io/Boundary-Interactive-Website/sitemap-index.xml`  
+**Sitemap:** `https://sypherxn.github.io/Boundary-Interactive-Website/sitemap.xml`  
 **GA4 measurement ID:** `G-21WBCSSXC4` (Boundary Interactive property)
 
 Search Console verifies this site through **Google Analytics** — no HTML meta tag required.

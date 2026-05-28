@@ -4,9 +4,14 @@ import sitemap from '@astrojs/sitemap';
 import { getDevlogLastmodMap } from './src/utils/devlogLastmod.ts';
 
 const devlogLastmod = getDevlogLastmodMap();
+const basePath = process.env.BASE_PATH ?? '/';
+const siteUrl =
+  basePath !== '/'
+    ? `https://sypherxn.github.io${basePath.replace(/\/$/, '')}`
+    : 'https://sypherxn.github.io';
 
-function prefixRootRelativeUrls(basePath = '/') {
-  const normalizedBase = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
+function prefixRootRelativeUrls(base = '/') {
+  const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
 
   return () => {
     return (tree) => {
@@ -39,8 +44,8 @@ function prefixRootRelativeUrls(basePath = '/') {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sypherxn.github.io',
-  base: process.env.BASE_PATH ?? '/',
+  site: siteUrl,
+  base: basePath,
   integrations: [
     sitemap({
       filter: (page) => !page.endsWith('/rss.xml'),
@@ -57,6 +62,6 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    rehypePlugins: [prefixRootRelativeUrls(process.env.BASE_PATH ?? '/')],
+    rehypePlugins: [prefixRootRelativeUrls(basePath)],
   },
 });

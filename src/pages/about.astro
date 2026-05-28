@@ -18,7 +18,7 @@ import { withBase } from "../utils/withBase";
       <article class="panel team-card">
         <img
           class={`team-photo ${member.name === "Matthew Tran" ? "team-photo-matthew" : ""}`}
-          src={member.photo}
+          src={withBase(member.photo)}
           alt={`${member.name} headshot`}
         />
         <h2>{member.name}</h2>

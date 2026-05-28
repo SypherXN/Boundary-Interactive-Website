@@ -86,6 +86,35 @@ After verification:
 
 ---
 
+## GA4 custom events (automatic)
+
+The site tracks engagement via `src/scripts/ga-events.ts` (no manual tagging on each link).
+
+| Event | When it fires |
+|-------|----------------|
+| `meta_store_click` | Meta Quest store / wishlist links |
+| `trailer_click` | YouTube trailer URL |
+| `youtube_channel_click` | YouTube channel links |
+| `trailer_section_view` | Game page trailer scrolled into view |
+| `linkedin_click` | LinkedIn links |
+| `email_click` | `mailto:` links |
+| `devlog_post_click` | Click from another page into a devlog post |
+| `devlog_view` | Devlog article page load |
+| `file_download` | Press kit image/file links (.png, .webp, etc.) |
+| `press_asset_click` | Links under Press Assets on the press page |
+| `team_website_click` | Team member personal sites |
+| `game_page_click` / `press_page_click` / etc. | Navigation to key internal pages |
+| `outbound_click` | Other external links |
+| `scroll_depth` | 25%, 50%, 75%, 90% scroll on any page |
+
+Event parameters include `link_text`, `cta_type` (`primary_button`, `footer_icon`, `main_nav`, …), `page_path`, and `content_id` for devlogs.
+
+In GA4 → **Admin** → **Custom definitions**, you can register event parameters (e.g. `cta_type`, `content_id`) as custom dimensions for easier reporting.
+
+Override on any link: `data-ga-event="my_event"` and optional `data-ga-label="Readable label"`.
+
+---
+
 ## Privacy note
 
 GA4 uses cookies and collects usage data. For EU visitors you may eventually need a cookie notice; fine to launch without one for a small indie site, but revisit if you target EU marketing heavily.

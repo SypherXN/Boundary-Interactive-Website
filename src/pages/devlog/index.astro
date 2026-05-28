@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { formatDateUTC } from "../../utils/date";
+import { withBase } from "../../utils/withBase";
 
 const posts = (await getCollection("devlogs")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -17,7 +18,7 @@ const posts = (await getCollection("devlogs")).sort(
   <section class="grid">
     {posts.map((post) => (
       <article class="panel">
-        <h2><a href={`/devlog/${post.id}/`}>{post.data.title}</a></h2>
+        <h2><a href={withBase(`/devlog/${post.id}/`)}>{post.data.title}</a></h2>
         <p class="muted">{formatDateUTC(post.data.date)} • {post.data.tags.join(", ")}</p>
         <p>{post.data.summary}</p>
       </article>

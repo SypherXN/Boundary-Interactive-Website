@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 
 export async function GET(context) {
   const posts = await getCollection("devlogs");
+  const base = import.meta.env.BASE_URL || "/";
+
   return rss({
     title: "Boundary Interactive Devlog",
     description: "Development updates for Fly Exterminator.",
@@ -13,7 +15,7 @@ export async function GET(context) {
         title: post.data.title,
         pubDate: post.data.date,
         description: post.data.summary,
-        link: `/devlog/${post.id}/`
+        link: `${base}devlog/${post.id}/`
       }))
   });
 }

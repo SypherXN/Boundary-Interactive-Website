@@ -38,7 +38,6 @@ const ogMeta =
   Object.values(ogImages).find((entry) => entry.path === ogImage) ?? socialOgImage;
 const siteName = studio.name;
 const isArticle = ogType === "article";
-const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 ---
 
 <!doctype html>
@@ -52,10 +51,8 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    {googleSiteVerification && (
-      <meta name="google-site-verification" content={googleSiteVerification} />
-    )}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <Analytics />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
@@ -164,6 +161,5 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
         </div>
       </div>
     </footer>
-    <Analytics />
   </body>
 </html>

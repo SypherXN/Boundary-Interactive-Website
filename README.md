@@ -40,15 +40,7 @@ The `games` content collection only stores long-form timeline text for the game 
 
 Both are **free**. Full step-by-step setup: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
 
-After creating your GA4 property and Search Console HTML-tag verification token, set GitHub Actions **Variables**:
-
-| Variable | Purpose |
-|----------|---------|
-| `PUBLIC_GA_MEASUREMENT_ID` | GA4 measurement ID (`G-...`) |
-| `PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console meta tag `content` value only |
-
-Redeploy `main`, verify ownership in Search Console, then submit  
-`https://sypherxn.github.io/Boundary-Interactive-Website/sitemap-index.xml`.
+Set GitHub Actions **Variable** `PUBLIC_GA_MEASUREMENT_ID` to `G-21WBCSSXC4`, redeploy, then verify Search Console using **Google Analytics** (same Google account, Administrator on the GA property). Details: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
 
 ## Deployment
 

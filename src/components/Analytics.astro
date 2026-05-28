@@ -1,7 +1,8 @@
 ---
 /**
- * Google Analytics 4 (free tier). Set PUBLIC_GA_MEASUREMENT_ID in .env to enable.
- * Plausible/Umami are paid or self-hosted alternatives if you prefer privacy-focused analytics.
+ * Google Analytics 4 (gtag.js). Set PUBLIC_GA_MEASUREMENT_ID at build time.
+ * Search Console can verify ownership via "Google Analytics" when this tag is live
+ * and you use the same Google account with Administrator access on the GA property.
  */
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const enabled = Boolean(measurementId && measurementId.startsWith("G-"));

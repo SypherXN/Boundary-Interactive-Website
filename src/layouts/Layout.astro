@@ -180,6 +180,8 @@ function isActive(href: string) {
             <a href={rssHref}>RSS</a>
             <span aria-hidden="true"> · </span>
             <a href={game.storeUrl}>Meta Store</a>
+            <span aria-hidden="true"> · </span>
+            <button type="button" class="footer-cookie-settings">Cookie settings</button>
           </p>
           <div class="footer-icon-row">
           <a
@@ -248,6 +250,11 @@ function isActive(href: string) {
     <AnalyticsEvents />
     <script>
       import "../scripts/nav.ts";
+      import { openConsentPreferences } from "../scripts/consent.ts";
+
+      document.querySelectorAll(".footer-cookie-settings").forEach((button) => {
+        button.addEventListener("click", openConsentPreferences);
+      });
     </script>
   </body>
 </html>

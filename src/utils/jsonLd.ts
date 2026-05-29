@@ -44,7 +44,7 @@ export function buildVideoGameSchema(site: SiteOrigin, pageUrl: string) {
     offers: {
       "@type": "Offer",
       url: game.storeUrl,
-      availability: "https://schema.org/PreOrder",
+      availability: game.storeOfferAvailability,
       priceCurrency: "USD",
       validFrom: game.releaseDateIso,
       seller: organizationRef(site)

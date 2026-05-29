@@ -4,6 +4,7 @@
  */
 
 export const CONSENT_STORAGE_KEY = "bi_cookie_consent";
+export const CONSENT_OPEN_EVENT = "bi-consent-open";
 export type ConsentChoice = "granted" | "denied";
 
 export function readConsent(): ConsentChoice | null {
@@ -55,6 +56,10 @@ export function applyConsent(choice: ConsentChoice) {
 
 function getMeasurementId(): string {
   return document.body?.dataset.gaId ?? "G-21WBCSSXC4";
+}
+
+export function openConsentPreferences() {
+  window.dispatchEvent(new CustomEvent(CONSENT_OPEN_EVENT));
 }
 
 export function initConsentFromStorage() {

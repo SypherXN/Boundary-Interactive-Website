@@ -243,11 +243,6 @@ a:focus-visible {
   box-shadow: none;
 }
 
-.button:hover,
-.button:focus-visible {
-  transform: translateY(-1px);
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -280,6 +275,23 @@ a:focus-visible {
 
 .footer-text-links a:hover,
 .footer-text-links a:focus-visible {
+  color: var(--accent-hover);
+}
+
+.footer-cookie-settings {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-cookie-settings:hover,
+.footer-cookie-settings:focus-visible {
   color: var(--accent-hover);
 }
 
@@ -618,6 +630,57 @@ li {
 .devlog-filter-empty {
   text-align: center;
   color: var(--muted);
+}
+
+.devlog-share-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.copy-snippet {
+  display: block;
+  margin: 0.45rem 0;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.copy-snippet-block {
+  max-height: 8rem;
+  overflow: auto;
+}
+
+.growth-actions li,
+.backlink-item {
+  margin-bottom: 1rem;
+}
+
+.copy-btn {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:hover,
+  .button:focus-visible {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover,
+  .button:focus-visible {
+    transform: none;
+  }
 }
 
 @media (max-width: 720px) {

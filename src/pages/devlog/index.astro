@@ -17,6 +17,13 @@ for (const post of posts) {
   for (const tag of post.data.tags) tagSet.add(tag);
 }
 const allTags = [...tagSet].sort((a, b) => a.localeCompare(b));
+
+const featuredUrl = featured
+  ? new URL(withBase(`/devlog/${featured.id}/`), Astro.site).href
+  : "";
+const shareTweet = featured
+  ? `${featured.data.title} — ${featured.data.summary} ${featuredUrl}`
+  : "";
 ---
 
 <Layout
@@ -63,11 +70,30 @@ const allTags = [...tagSet].sort((a, b) => a.localeCompare(b));
         </h2>
         <p>{featured.data.summary}</p>
         <p class="devlog-card-tags muted">{featured.data.tags.join(" · ")}</p>
-        <p>
-          <a class="button" href={withBase(`/devlog/${featured.id}/`)}>Read latest post</a>
-        </p>
-      </section>
-    )}
+      <p>
+        <a class="button" href={withBase(`/devlog/${featured.id}/`)}>Read latest post</a>
+      </p>
+      {shareTweet && (
+        <div class="devlog-share-tools">
+          <p class="muted">Share this update</p>
+          <button type="button" class="button secondary copy-btn" data-copy-text={featuredUrl}>
+            Copy post link
+          </button>
+          <button type="button" class="button secondary copy-btn" data-copy-text={shareTweet}>
+            Copy share text
+          </button>
+          <a
+            class="button secondary"
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTweet)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Share on X
+          </a>
+        </div>
+      )}
+    </section>
+  )}
 
     {olderPosts.length > 0 && (
       <section class="grid">
@@ -102,4 +128,5 @@ const allTags = [...tagSet].sort((a, b) => a.localeCompare(b));
 
 <script>
   import "../../scripts/devlog-filter.ts";
+  import "../../scripts/copy-helpers.ts";
 </script>

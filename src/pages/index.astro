@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import OptimizedImage from "../components/OptimizedImage.astro";
 import { brand, game, links, siteUrl, studio } from "../data/site";
-import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { buildOrganizationSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
@@ -40,18 +38,23 @@ const [latestDevlog] = posts;
     <h2 class="featured-game-title">{game.title}</h2>
     <p>{game.pitch}</p>
     <figure class="media-block">
-      <OptimizedImage
-        class="showcase-image"
-        src={images.coverWide.src}
-        alt="Fly Exterminator wide hero cover art."
-        width={images.coverWide.width}
-        height={images.coverWide.height}
-        loading="eager"
-      />
+      <div class="video-embed">
+        <iframe
+          src={game.trailerEmbedUrl}
+          title="Fly Exterminator Official Trailer"
+          loading="eager"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <figcaption class="media-caption">
+        Official trailer — mixed-reality fly catching on Meta Quest 3.
+      </figcaption>
     </figure>
     <div class="btn-row">
-      <a class="button" href={game.storeUrl}>Wishlist on Meta Store</a>
-      <a class="button secondary" href={withBase("/game")}>Watch the trailer and learn more</a>
+      <a class="button" href={links.discord}>Join Fly Exterminator Discord</a>
+      <a class="button secondary" href={game.storeUrl}>Wishlist on Meta Store</a>
+      <a class="button secondary" href={withBase("/game")}>Full game page</a>
     </div>
   </section>
 
@@ -93,7 +96,7 @@ const [latestDevlog] = posts;
         <a href={withBase("/press")}>press kit</a>.
       </p>
       <div class="btn-row">
-        <a class="button secondary" href={links.discord}>Join Discord</a>
+        <a class="button" href={links.discord}>Join Discord</a>
         <a class="button secondary" href={game.storeUrl}>Meta Store</a>
         <a class="button secondary" href={withBase("/press")}>Press kit</a>
       </div>

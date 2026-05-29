@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 const SITE = "https://sypherxn.github.io/Boundary-Interactive-Website";
 
-const staticPaths = ["/", "/about/", "/contact/", "/devlog/", "/game/", "/press/"];
+const staticPaths = ["/", "/about/", "/contact/", "/devlog/", "/game/", "/press/", "/privacy/"];
 
 function escapeXml(value) {
   return value

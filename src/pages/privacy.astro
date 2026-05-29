@@ -1,17 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { gaMeasurementId, studio } from "../data/site";
-import { pageSeo } from "../data/seo";
+import { ogImages, pageSeo } from "../data/seo";
 import { withBase } from "../utils/withBase";
-
-const privacySeo = {
-  title: "Privacy Notice | Boundary Interactive",
-  description:
-    "How Boundary Interactive uses cookies and Google Analytics on this website, and how to manage your preferences."
-};
 ---
 
-<Layout title={privacySeo.title} description={privacySeo.description} noindex>
+<Layout title={pageSeo.privacy.title} description={pageSeo.privacy.description} ogImage={ogImages.default.path}>
   <section class="hero">
     <h1>Privacy Notice</h1>
     <p class="muted">Last updated: May 29, 2026</p>
@@ -44,6 +38,7 @@ const privacySeo = {
     <div class="btn-row cookie-privacy-actions">
       <button type="button" class="button" data-consent="granted">Accept analytics</button>
       <button type="button" class="button secondary" data-consent="denied">Decline analytics</button>
+      <button type="button" class="button secondary cookie-settings-trigger">Cookie settings</button>
     </div>
   </section>
 
@@ -81,7 +76,7 @@ const privacySeo = {
 </Layout>
 
 <script>
-  import { writeConsent } from "../scripts/consent.ts";
+  import { openConsentPreferences, writeConsent } from "../scripts/consent.ts";
 
   document.querySelectorAll<HTMLButtonElement>("[data-consent]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -91,5 +86,9 @@ const privacySeo = {
         button.textContent = choice === "granted" ? "Accepted" : "Declined";
       }
     });
+  });
+
+  document.querySelectorAll(".cookie-settings-trigger").forEach((button) => {
+    button.addEventListener("click", openConsentPreferences);
   });
 </script>

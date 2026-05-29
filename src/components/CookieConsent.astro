@@ -29,13 +29,19 @@ import { withBase } from "../utils/withBase";
 </div>
 
 <script>
-  import { initConsentFromStorage, readConsent, writeConsent } from "../scripts/consent.ts";
+  import {
+    CONSENT_OPEN_EVENT,
+    initConsentFromStorage,
+    readConsent,
+    writeConsent
+  } from "../scripts/consent.ts";
 
   const banner = document.getElementById("cookie-consent");
 
   function showBanner() {
     if (!banner) return;
     banner.hidden = false;
+    banner.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }
 
   function hideBanner() {
@@ -61,4 +67,6 @@ import { withBase } from "../utils/withBase";
   if (!readConsent()) {
     showBanner();
   }
+
+  window.addEventListener(CONSENT_OPEN_EVENT, showBanner);
 </script>

@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/generate-sitemap.mjs && astro build",
+    "build": "node scripts/generate-sitemap.mjs && node scripts/build-press-kit.mjs && astro build",
+    "press-kit:build": "node scripts/build-press-kit.mjs",
     "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
     "brand:export": "node scripts/export-brand.mjs",
@@ -19,6 +20,7 @@
     "astro": "^6.3.8"
   },
   "devDependencies": {
+    "archiver": "^7.0.1",
     "opentype.js": "^2.0.0",
     "sharp": "^0.34.5"
   }

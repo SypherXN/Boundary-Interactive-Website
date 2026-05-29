@@ -53,24 +53,51 @@ export const externalBacklinkChecklist = [
   {
     channel: "LinkedIn Company Page",
     field: "Website",
-    profileUrl: links.linkedinCompany
+    profileUrl: links.linkedinCompany,
+    pasteValue: siteUrl
   },
   {
     channel: "YouTube — @FlyExterminatorGame",
     field: "About → Links → Official website",
-    profileUrl: links.youtubeChannel
+    profileUrl: links.youtubeChannel,
+    pasteValue: siteUrl
   },
   {
     channel: "Meta Store listing",
     field: "Developer / support links where available",
-    profileUrl: links.metaStore
+    profileUrl: links.metaStore,
+    pasteValue: siteUrl
   },
   {
     channel: "Fly Exterminator Discord",
-    field: "Server invite / community link",
-    profileUrl: links.discord
+    field: "Server description / welcome channel",
+    profileUrl: links.discord,
+    pasteValue: `${siteUrl}\n${links.discord}`
   }
 ] as const;
+
+/** Post-launch discovery checklist (Search Console + syndication). */
+export const growthChecklist = [
+  {
+    title: "Google Search Console",
+    detail:
+      "Verify the site, submit sitemap.xml, and watch Coverage after deploys (see docs/google-analytics-and-search-console.md in the repo).",
+    href: "https://search.google.com/search-console"
+  },
+  {
+    title: "Paste the official URL everywhere",
+    detail: "Use the backlink checklist below on LinkedIn, YouTube, Meta Store, and Discord.",
+    href: siteUrl
+  },
+  {
+    title: "Share the latest devlog",
+    detail: "Post the newest devlog link in Discord and community channels when you ship updates.",
+    href: "/devlog/"
+  }
+] as const;
+
+/** ZIP of logos and screenshots (generated before build). */
+export const pressKitZip = "/press-kit.zip";
 
 export const studio = {
   name: "Boundary Interactive",
@@ -127,6 +154,11 @@ export const teamMembers = [
   }
 ];
 
+/**
+ * Fly Exterminator launch fields — update together when the Meta Store listing changes:
+ * - status, statusBadge, releaseTarget, releaseWindow, releaseDateIso
+ * - storeOfferAvailability (PreOrder → InStock when Early Access is live)
+ */
 export const game = {
   title: "Fly Exterminator",
   /** Customer-facing launch label (use on badges, press, SEO). */
@@ -136,6 +168,8 @@ export const game = {
   statusBadge: "Early Access · June 2026",
   /** Longer release line for FAQ and press. */
   releaseTarget: "Early Access on Meta Store, targeting late June 2026",
+  /** Schema.org availability URL — use PreOrder until live; switch to InStock on launch. */
+  storeOfferAvailability: "https://schema.org/PreOrder" as const,
   platform: "Meta Quest 3",
   genres: ["Arcade", "Action", "Simulation"],
   rating: "Everyone",
@@ -172,8 +206,16 @@ export const game = {
   trailerEmbedUrl: `https://www.youtube.com/embed/${youtubeTrailerId}`
 };
 
+/** Short line for channel bios (Discord, YouTube, Meta, etc.). */
+export const channelBioLine = `${studio.name} — ${game.title} for Meta Quest 3. Official site: ${siteUrl}`;
+
 /** Press kit download/list links (paths are under /public). */
 export const pressKitAssets = [
+  {
+    label: "Press kit ZIP (logos + screenshots)",
+    href: pressKitZip,
+    type: "Download"
+  },
   {
     label: "Studio icon (SVG, transparent)",
     href: brand.icon.default,

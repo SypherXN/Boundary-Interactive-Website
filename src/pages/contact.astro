@@ -1,13 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { externalBacklinkChecklist, game, siteUrl, studio, teamMembers } from "../data/site";
+import {
+  channelBioLine,
+  externalBacklinkChecklist,
+  game,
+  growthChecklist,
+  links,
+  siteUrl,
+  studio,
+  teamMembers
+} from "../data/site";
 import { ogImages, pageSeo } from "../data/seo";
+import { getCollection } from "astro:content";
 import { withBase } from "../utils/withBase";
 
 const mappedOfficialLinks = studio.socialLinks.map((link) => ({
   ...link,
   href: link.href.startsWith("/") ? withBase(link.href) : link.href
 }));
+
+const posts = (await getCollection("devlogs")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const [latestDevlog] = posts;
+const latestDevlogUrl = latestDevlog
+  ? new URL(withBase(`/devlog/${latestDevlog.id}/`), Astro.site).href
+  : new URL(withBase("/devlog/"), Astro.site).href;
+
+const discordDevlogPost = latestDevlog
+  ? `New devlog: **${latestDevlog.data.title}**\n${latestDevlog.data.summary}\n\nRead more: ${latestDevlogUrl}\nWishlist: ${game.storeUrl}\nDiscord: ${links.discord}`
+  : `Follow Fly Exterminator development: ${latestDevlogUrl}`;
 ---
 
 <Layout
@@ -51,20 +73,66 @@ const mappedOfficialLinks = studio.socialLinks.map((link) => ({
     </ul>
   </section>
 
+  <section class="panel growth-panel">
+    <h2>Grow discovery</h2>
+    <p>Quick actions after each deploy — paste these links on your external channels.</p>
+    <ul class="growth-actions">
+      <li>
+        <strong>Official site URL</strong>
+        <code class="copy-snippet">{siteUrl}</code>
+        <button type="button" class="button secondary copy-btn" data-copy-text={siteUrl}>
+          Copy URL
+        </button>
+      </li>
+      <li>
+        <strong>Channel bio line</strong>
+        <code class="copy-snippet">{channelBioLine}</code>
+        <button type="button" class="button secondary copy-btn" data-copy-text={channelBioLine}>
+          Copy bio
+        </button>
+      </li>
+      {latestDevlog && (
+        <li>
+          <strong>Discord devlog announcement</strong>
+          <code class="copy-snippet copy-snippet-block">{discordDevlogPost}</code>
+          <button type="button" class="button secondary copy-btn" data-copy-text={discordDevlogPost}>
+            Copy Discord post
+          </button>
+        </li>
+      )}
+    </ul>
+    <ul>
+      {growthChecklist.map((item) => (
+        <li>
+          <strong>{item.title}</strong> — {item.detail}
+          {" "}
+          (<a href={item.href.startsWith("http") ? item.href : withBase(item.href)}>open</a>)
+        </li>
+      ))}
+    </ul>
+  </section>
+
   <section class="panel">
-    <h2>Link This Site From Your Channels</h2>
+    <h2>Link this site from your channels</h2>
     <p>
       Paste our official website URL into external profiles so players and press can find the
-      <a href={withBase("/game")}>Fly Exterminator game page</a>, devlog, and press kit:
+      <a href={withBase("/game")}>Fly Exterminator game page</a>, devlog, and press kit.
     </p>
-    <p>
-      <strong><a href={siteUrl}>{siteUrl}</a></strong>
-    </p>
-    <ul>
+    <ul class="backlink-list">
       {externalBacklinkChecklist.map((item) => (
-        <li>
-          <strong>{item.channel}</strong> — {item.field}
-          (<a href={item.profileUrl}>open profile</a>)
+        <li class="backlink-item">
+          <p>
+            <strong>{item.channel}</strong> — {item.field}
+            (<a href={item.profileUrl}>open profile</a>)
+          </p>
+          <code class="copy-snippet">{item.pasteValue}</code>
+          <button
+            type="button"
+            class="button secondary copy-btn"
+            data-copy-text={item.pasteValue}
+          >
+            Copy for {item.channel}
+          </button>
         </li>
       ))}
     </ul>
@@ -87,3 +155,7 @@ const mappedOfficialLinks = studio.socialLinks.map((link) => ({
     ))}
   </section>
 </Layout>
+
+<script>
+  import "../scripts/copy-helpers.ts";
+</script>

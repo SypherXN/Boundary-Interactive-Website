@@ -55,6 +55,11 @@ export const pageSeo = {
   game: {
     title: `Fly Exterminator — Early Access ${game.releaseWindow} | Meta Quest 3 MR Game`,
     description: `${game.pitch} ${game.status} (${game.releaseTarget}). Wishlist on Meta Store.`
+  },
+  privacy: {
+    title: "Privacy Notice | Boundary Interactive",
+    description:
+      "How Boundary Interactive uses cookies and Google Analytics on this website, and how to manage your preferences."
   }
 } as const;
 

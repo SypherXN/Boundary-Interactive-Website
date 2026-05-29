@@ -36,6 +36,10 @@ Launch copy, store links, team info, press kit assets, and social URLs live in `
 
 Page image paths are defined in `src/data/images.ts`. Devlog markdown uses the same `/images/...` and `/devlog/...` paths.
 
+**Press kit ZIP:** `npm run press-kit:build` writes `public/press-kit.zip` before deploy (also runs in `npm run build`).
+
+**Growth tools:** The Contact page includes copy buttons for the site URL, channel bio line, Discord devlog posts, and a backlink checklist. Use after each deploy.
+
 Game development timeline and launch copy live in `src/data/site.ts` under `game.*`. Devlogs stay in `src/content/devlogs/` (editorial content).
 
 ## SEO

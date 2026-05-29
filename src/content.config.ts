@@ -14,7 +14,9 @@ const devlogs = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string(),
-    tags: z.array(z.string())
+    tags: z.array(z.string()),
+    /** Path under /public for page-specific social preview (see devlogShareImages). */
+    ogImage: z.string().optional()
   })
 });
 

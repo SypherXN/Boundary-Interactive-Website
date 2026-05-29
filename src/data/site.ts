@@ -78,13 +78,24 @@ export const studio = {
   description:
     "Boundary Interactive is a two-person indie game studio building mixed-reality games for Meta Quest.",
   contactEmail: "boundaryinteractivellc@gmail.com",
+  about: [
+    "Boundary Interactive is a Los Angeles–area indie studio co-founded by Matthew Tran and Chaeho Shin. We design and build mixed-reality games where your real room is the playspace—not a virtual backdrop.",
+    "Our launch title, Fly Exterminator, grew from Quest 3 prototypes that tested spatial audio, room mesh collision, and hand-tracked swatting, through alpha and beta milestones, to a USC Games Expo 2026 showcase. We are polishing toward Early Access on Meta Store.",
+    "We share in-progress work on the devlog and welcome press, playtest feedback, and collaboration inquiries through our contact page."
+  ],
   socialLinks: [
     { label: "Boundary Interactive LinkedIn", href: links.linkedinCompany },
-    { label: "Meta Store", href: links.metaStore },
+    { label: "Meta Store listing", href: links.metaStore },
+    { label: "Fly Exterminator YouTube", href: links.youtubeChannel },
+    { label: "Official trailer", href: links.youtubeTrailer },
     { label: "Fly Exterminator Discord", href: links.discord },
-    { label: "Press Kit", href: "/press" }
+    { label: "Press kit", href: "/press" }
   ]
 };
+
+/** Shown on the press kit for asset attribution. */
+export const pressCredits =
+  "Fly Exterminator logo and cover art refresh (2026 showcase materials): Yan YiAn.";
 
 export const teamMembers = [
   {
@@ -190,6 +201,11 @@ export const pressKitAssets = [
     label: "Fly Exterminator in-game UI (PNG)",
     href: "/images/game/fly-exterminator-ui.png",
     type: "Screenshots"
+  },
+  {
+    label: "Fly Exterminator game logo (PNG)",
+    href: "/images/game/fly-exterminator-logo.png",
+    type: "Logos"
   },
   {
     label: "Meta Store listing (more screenshots)",

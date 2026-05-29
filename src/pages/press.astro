@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-import { game, links, pressKitAssets, studio } from "../data/site";
+import { game, links, pressCredits, pressKitAssets, studio } from "../data/site";
 import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { withBase } from "../utils/withBase";
@@ -19,9 +19,9 @@ function pressAssetHref(href: string) {
   <section class="hero">
     <h1>Press Kit</h1>
     <p>
-      <strong>{game.title}</strong> is a mixed-reality action-simulation game from
-      <strong> {studio.legalName}</strong>, currently listed as {game.status} for {game.releaseWindow}.
-      Visit the <a href={withBase("/game")}>official Fly Exterminator game page</a> for trailers and screenshots.
+      <strong>{game.title}</strong> is a mixed-reality arcade game from <strong>{studio.legalName}</strong>.
+      {game.status} for {game.platform} — {game.releaseTarget}. Visit the
+      <a href={withBase("/game")}>official game page</a> for the trailer, screenshots, and FAQ.
     </p>
     <figure class="media-block">
       <OptimizedImage
@@ -35,23 +35,55 @@ function pressAssetHref(href: string) {
   </section>
 
   <section class="panel">
-    <h2>One-Line Pitch</h2>
+    <h2>Factsheet</h2>
+    <dl class="factsheet">
+      <dt>Game</dt>
+      <dd>{game.title}</dd>
+      <dt>Developer</dt>
+      <dd>{studio.legalName}</dd>
+      <dt>Platform</dt>
+      <dd>{game.platform}</dd>
+      <dt>Genres</dt>
+      <dd>{game.genres.join(", ")}</dd>
+      <dt>Rating</dt>
+      <dd>{game.rating}</dd>
+      <dt>Status</dt>
+      <dd>{game.status}</dd>
+      <dt>Release</dt>
+      <dd>{game.releaseTarget}</dd>
+      <dt>Store</dt>
+      <dd><a href={game.storeUrl}>Meta Store listing</a></dd>
+      <dt>Trailer</dt>
+      <dd><a href={links.youtubeTrailer}>YouTube</a></dd>
+    </dl>
+  </section>
+
+  <section class="panel">
+    <h2>One-line pitch</h2>
     <p>{game.pitch}</p>
-    <h2>Short Description</h2>
+    <h2>Short description</h2>
     <p>{game.shortDescription}</p>
-    <h2>Official Links</h2>
+    <h2>Key features</h2>
+    <ul>
+      {game.highlights.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+    <h2>Official links</h2>
     <ul>
       <li><a href={game.storeUrl}>Meta Store listing</a></li>
       <li><a href={links.youtubeChannel}>YouTube channel</a></li>
-      <li><a href={links.discord}>Fly Exterminator Discord</a></li>
       <li><a href={links.youtubeTrailer}>Official trailer</a></li>
+      <li><a href={links.discord}>Fly Exterminator Discord</a></li>
+      <li><a href={links.linkedinCompany}>Boundary Interactive LinkedIn</a></li>
       <li><a href={withBase("/game")}>Official game page</a></li>
       <li><a href={withBase("/devlog")}>Fly Exterminator devlog</a></li>
+      <li><a href={withBase("/about")}>Studio &amp; Team</a></li>
     </ul>
   </section>
 
   <section class="panel">
-    <h2>Press Assets</h2>
+    <h2>Press assets</h2>
     <ul>
       {pressKitAssets.map((asset) => (
         <li>
@@ -59,16 +91,21 @@ function pressAssetHref(href: string) {
         </li>
       ))}
     </ul>
+    <p class="muted credits">{pressCredits}</p>
   </section>
 
   <section class="panel">
-    <h2>Press Contact</h2>
+    <h2>Press contact</h2>
     <p>
-      Email:
+      <strong>{game.title}</strong> (press, support, game inquiries):
       <a href={`mailto:${game.contactEmail}`}>{game.contactEmail}</a>
     </p>
+    <p>
+      <strong>{studio.name}</strong> (studio, business, partnerships):
+      <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>
+    </p>
     <p class="muted">
-      You can also reach us via the
+      Full contact options on the
       <a href={withBase("/contact")}>Boundary Interactive contact page</a>.
     </p>
     <div class="btn-row">

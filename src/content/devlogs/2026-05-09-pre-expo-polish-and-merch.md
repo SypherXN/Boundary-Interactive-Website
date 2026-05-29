@@ -2,6 +2,7 @@
 title: Pre-Expo Polish and Merch Prep
 date: 2026-05-09
 summary: Before USC Games Expo, we stabilized the build, adapted the presentation flow, and completed showcase merchandising.
+ogImage: /images/game/fly-exterminator-cover-wide.png
 tags:
   - expo
   - polish

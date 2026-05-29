@@ -6,6 +6,12 @@ import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { buildOrganizationSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("devlogs")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const [latestDevlog] = posts;
 ---
 
 <Layout
@@ -30,6 +36,7 @@ import { withBase } from "../utils/withBase";
     <p>{studio.description}</p>
     <h2 class="featured-game-title">{game.title}</h2>
     <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
+    <p class="muted release-target">{game.releaseTarget}</p>
     <p>{game.pitch}</p>
     <figure class="media-block">
       <OptimizedImage
@@ -42,40 +49,48 @@ import { withBase } from "../utils/withBase";
       />
     </figure>
     <div class="btn-row">
-      <a class="button" href={game.storeUrl}>Wishlist Fly Exterminator on Meta</a>
-      <a class="button secondary" href={withBase("/game")}>Explore the Fly Exterminator game page</a>
+      <a class="button" href={game.storeUrl}>Wishlist Fly Exterminator on Meta Store</a>
+      <a class="button secondary" href={withBase("/game")}>Watch the trailer and learn more</a>
     </div>
   </section>
 
   <section class="grid">
     <article class="panel">
       <h2>Studio</h2>
-      <p>{studio.description}</p>
       <p>
-        <a href={withBase("/about")}>Meet the Boundary Interactive team</a>.
+        We are a two-person team building mixed-reality games where your physical room is the level.
+        Learn more on the <a href={withBase("/about")}>Studio &amp; Team</a> page.
       </p>
     </article>
     <article class="panel">
-      <h2>Latest Development</h2>
-      <p>
-        {game.title} is being prepared for release with mixed-reality gameplay tuned for short,
-        replayable sessions.
-      </p>
-      <p>
-        <a href={withBase("/devlog")}>Read the Fly Exterminator devlog</a> for milestone updates.
-      </p>
+      <h2>Latest development</h2>
+      {latestDevlog ? (
+        <>
+          <p>
+            <a href={withBase(`/devlog/${latestDevlog.id}/`)}>{latestDevlog.data.title}</a>
+            — {latestDevlog.data.summary}
+          </p>
+          <p>
+            <a href={withBase("/devlog")}>Read all devlog posts</a>
+          </p>
+        </>
+      ) : (
+        <p>
+          Follow {game.title} from prototyping through Early Access on the
+          <a href={withBase("/devlog")}>devlog</a>.
+        </p>
+      )}
     </article>
     <article class="panel">
-      <h2>Follow Development</h2>
+      <h2>Follow development</h2>
       <p>
-        Track launch status on the
-        <a href={game.storeUrl}>Meta Quest store listing</a>,
-        join the <a href={links.discord}>Fly Exterminator Discord</a>, or browse the
+        Wishlist on the <a href={game.storeUrl}>Meta Store listing</a>, join the
+        <a href={links.discord}>Fly Exterminator Discord</a>, or browse the
         <a href={withBase("/press")}>press kit</a>.
       </p>
       <div class="btn-row">
-        <a class="button secondary" href={game.storeUrl}>Meta store page</a>
-        <a class="button secondary" href={links.discord}>Discord community</a>
+        <a class="button secondary" href={game.storeUrl}>Meta Store</a>
+        <a class="button secondary" href={links.discord}>Discord</a>
         <a class="button secondary" href={withBase("/press")}>Press kit</a>
       </div>
     </article>

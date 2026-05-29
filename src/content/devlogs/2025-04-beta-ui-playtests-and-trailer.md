@@ -2,6 +2,7 @@
 title: Beta UI, Playtests, and Trailer Draft
 date: 2025-04-17
 summary: Beta focused on UI redesign, visibility and leaderboard fixes, playtest-driven balancing, and the first trailer draft.
+ogImage: /images/game/fly-exterminator-ui.png
 tags:
   - beta
   - ui

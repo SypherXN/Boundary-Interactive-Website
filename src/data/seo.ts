@@ -1,4 +1,4 @@
-import { images } from "./images";
+import { devlogShareImages, images } from "./images";
 import { game, teamMembers } from "./site";
 
 /** Dedicated 1200×630 social preview (see /public/og-social.png). */
@@ -30,33 +30,46 @@ export const pageSeo = {
   home: {
     title: "Boundary Interactive | Mixed-Reality Indie Game Studio for Meta Quest",
     description:
-      "Boundary Interactive is an indie studio building mixed-reality games for Meta Quest. Wishlist Fly Exterminator — coming June 2026."
-  },
-  game: {
-    title: `Fly Exterminator — Coming ${game.releaseWindow} | Meta Quest 3 MR Game`,
-    description: `${game.pitch} ${game.status} (${game.releaseTarget}). Wishlist on Meta Store.`
-  },
-  devlogIndex: {
-    title: "Fly Exterminator Devlog | Boundary Interactive",
-    description:
-      "Development updates, playtest learnings, and launch progress for Fly Exterminator on Meta Quest 3."
+      "Boundary Interactive builds mixed-reality games for Meta Quest. Fly Exterminator is Coming Soon — Early Access on Meta Store, targeting late June 2026."
   },
   about: {
     title: "Studio & Team | Boundary Interactive",
     description:
-      "Meet Boundary Interactive, the two-person indie studio behind Fly Exterminator for Meta Quest mixed reality."
+      "Meet Boundary Interactive, the two-person indie studio behind Fly Exterminator. USC Games Expo 2026 showcase; Early Access targeting late June 2026."
   },
   press: {
     title: "Press Kit | Fly Exterminator & Boundary Interactive",
     description:
-      "Press assets, official links, and contact info for Fly Exterminator — mixed-reality game for Meta Quest 3."
+      "Press assets and facts for Fly Exterminator — mixed-reality arcade game for Meta Quest 3. Early Access targeting late June 2026 on Meta Store."
   },
   contact: {
     title: "Contact | Boundary Interactive",
     description:
-      "Contact Boundary Interactive for press, business, and collaboration inquiries about Fly Exterminator."
+      "Contact Boundary Interactive for studio, press, and business inquiries. Fly Exterminator press and support: flyexterminatorgame@gmail.com."
+  },
+  devlogIndex: {
+    title: "Fly Exterminator Devlog | Boundary Interactive",
+    description:
+      "Development updates from prototyping through USC Games Expo 2026 and Early Access prep for Fly Exterminator on Meta Quest 3."
+  },
+  game: {
+    title: `Fly Exterminator — Coming ${game.releaseWindow} | Meta Quest 3 MR Game`,
+    description: `${game.pitch} ${game.status} (${game.releaseTarget}). Wishlist on Meta Store.`
   }
 } as const;
+
+/** Social preview for a devlog post (optional `ogImage` path in frontmatter). */
+export function devlogOgForPost(ogImage?: string) {
+  if (!ogImage) return socialOgImage;
+  const entry = devlogShareImages[ogImage];
+  if (!entry) return socialOgImage;
+  return {
+    path: entry.src,
+    width: entry.width,
+    height: entry.height,
+    alt: `Fly Exterminator devlog — ${entry.src.split("/").pop()}`
+  };
+}
 
 export function devlogPostSeo(title: string, summary: string) {
   const trimmed =

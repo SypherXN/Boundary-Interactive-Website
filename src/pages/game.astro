@@ -24,19 +24,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 >
   <section class="hero">
     <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
+    <p class="muted release-target">{game.releaseTarget}</p>
     <h1>{game.title}</h1>
     <p>{game.pitch}</p>
     <p class="muted">{game.shortDescription}</p>
     <p class="muted">Genres: {game.genres.join(" / ")} • Rating: {game.rating}</p>
     <figure class="media-block">
-      <OptimizedImage
-        class="showcase-image"
-        src={images.heroArt.src}
-        alt="Fly Exterminator key art showing a player swatting a fly in a living room."
-        width={images.heroArt.width}
-        height={images.heroArt.height}
-        loading="eager"
-      />
+      <div class="video-embed">
+        <iframe
+          src={game.trailerEmbedUrl}
+          title="Fly Exterminator Official Trailer"
+          loading="eager"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <figcaption class="media-caption">
+        Official trailer — mixed-reality fly catching on Meta Quest 3, ahead of Early Access.
+      </figcaption>
     </figure>
     <div class="btn-row">
       <a class="button" href={game.storeUrl}>Wishlist on Meta Store</a>
@@ -69,6 +74,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
     </ul>
     <figure class="media-block">
       <OptimizedImage
+        class="showcase-image"
+        src={images.heroArt.src}
+        alt="Fly Exterminator key art showing a player swatting a fly in a living room."
+        width={images.heroArt.width}
+        height={images.heroArt.height}
+      />
+      <figcaption class="media-caption">
+        Key art — hand-tracked swatting in a real living room playspace.
+      </figcaption>
+    </figure>
+    <figure class="media-block">
+      <OptimizedImage
         src={images.roomScanning.src}
         alt="Meta Quest 3 room scanning overlay used for Fly Exterminator mixed-reality development."
         class="showcase-image"
@@ -89,24 +106,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
       />
       <figcaption class="media-caption">
         Mixed-reality UI for mode setup and score chasing—designed for clarity during playtests and expo demos.
-      </figcaption>
-    </figure>
-  </section>
-
-  <section class="panel">
-    <h2>Official trailer</h2>
-    <figure class="media-block">
-      <div class="video-embed">
-        <iframe
-          src={game.trailerEmbedUrl}
-          title="Fly Exterminator Official Trailer"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <figcaption class="media-caption">
-        Official trailer from the beta polish pass—showcasing mixed-reality fly catching ahead of Early Access.
       </figcaption>
     </figure>
   </section>

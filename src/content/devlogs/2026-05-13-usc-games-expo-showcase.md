@@ -2,6 +2,7 @@
 title: USC Games Expo 2026 Showcase
 date: 2026-05-13
 summary: We showcased Fly Exterminator at USC Games Expo 2026, gathered strong player reactions, and are polishing toward late-June Early Access on Meta Store.
+ogImage: /devlog/usc-games-expo-2026.png
 tags:
   - expo
   - community

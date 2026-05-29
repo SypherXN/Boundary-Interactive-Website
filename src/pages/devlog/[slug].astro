@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
-import { devlogAuthors, devlogPostSeo, ogImages } from "../../data/seo";
+import { devlogAuthors, devlogOgForPost, devlogPostSeo } from "../../data/seo";
 import { formatDateUTC } from "../../utils/date";
 import { buildBlogPostingSchema } from "../../utils/jsonLd";
 import { withBase } from "../../utils/withBase";
@@ -17,13 +17,14 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const seo = devlogPostSeo(post.data.title, post.data.summary);
+const ogMeta = devlogOgForPost(post.data.ogImage);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <Layout
   title={seo.title}
   description={seo.description}
-  ogImage={ogImages.default.path}
+  ogImage={ogMeta.path}
   ogType="article"
   articlePublishedTime={post.data.date}
   articleModifiedTime={post.data.date}

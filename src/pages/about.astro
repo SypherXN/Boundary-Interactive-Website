@@ -22,9 +22,17 @@ const teamImageByPhoto: Record<string, (typeof images)[keyof typeof images]> = {
   <section class="hero">
     <h1>Studio & Team</h1>
     <p>
-      {studio.name} is a two-person indie studio focused on mixed-reality game development.
-      Our current title is <a href={withBase("/game")}>{game.title}</a> for {game.platform}.
+      {studio.name} is a two-person indie studio focused on mixed-reality game development for
+      {game.platform}. Our current title is <a href={withBase("/game")}>{game.title}</a>.
     </p>
+  </section>
+
+  <section class="panel">
+    <h2>About Boundary Interactive</h2>
+    {studio.about.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+    <p class="muted">{game.releaseTarget}</p>
   </section>
 
   <section class="grid">
@@ -58,9 +66,13 @@ const teamImageByPhoto: Record<string, (typeof images)[keyof typeof images]> = {
 
   <section class="panel">
     <p>
-      <a href={withBase("/devlog")}>Fly Exterminator devlog</a>
+      <a href={withBase("/game")}>{game.title} game page</a>
+      •
+      <a href={withBase("/devlog")}>Devlog</a>
       •
       <a href={withBase("/press")}>Press kit</a>
+      •
+      <a href={withBase("/contact")}>Contact</a>
     </p>
   </section>
 </Layout>

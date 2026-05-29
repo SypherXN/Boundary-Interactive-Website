@@ -20,9 +20,10 @@ const posts = (await getCollection("devlogs")).sort(
     <h1>Devlog</h1>
     <p>
       Development updates for <a href={withBase("/game")}>{game.title}</a> on {game.platform} as
-      Boundary Interactive approaches launch. Press and media can use the
-      <a href={withBase("/press")}>Fly Exterminator press kit</a>.
-      Subscribe via <a href={withBase("/rss.xml")}>RSS</a>.
+      Boundary Interactive moves from early mixed-reality prototypes through USC Games Expo 2026 and
+      toward {game.releaseTarget.toLowerCase()}. Press and media can use the
+      <a href={withBase("/press")}>Fly Exterminator press kit</a>. Subscribe via
+      <a href={withBase("/rss.xml")}>RSS</a>.
     </p>
   </section>
 
@@ -42,7 +43,7 @@ const posts = (await getCollection("devlogs")).sort(
     <p>
       <a href={withBase("/game")}>Fly Exterminator game page</a>
       •
-      <a href={game.storeUrl}>Meta Quest store listing</a>
+      <a href={game.storeUrl}>Meta Store listing</a>
       •
       <a href={links.discord}>Discord community</a>
     </p>

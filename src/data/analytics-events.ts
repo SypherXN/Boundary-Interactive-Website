@@ -7,6 +7,8 @@ export const gaEvents = {
   metaStoreClick: "meta_store_click",
   /** YouTube channel link */
   youtubeChannelClick: "youtube_channel_click",
+  /** Fly Exterminator Discord invite */
+  discordClick: "discord_click",
   /** Official trailer URL */
   trailerClick: "trailer_click",
   /** Trailer iframe scrolled into view on game page */

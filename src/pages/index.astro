@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-import { game, studio } from "../data/site";
+import { game, links, studio } from "../data/site";
 import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { buildOrganizationSchema } from "../utils/jsonLd";
@@ -57,12 +57,13 @@ import { withBase } from "../utils/withBase";
       <h2>Follow Development</h2>
       <p>
         Track launch status on the
-        <a href={game.storeUrl}>Meta Quest store listing</a>
-        or browse the
-        <a href={withBase("/press")}>Fly Exterminator press kit</a>.
+        <a href={game.storeUrl}>Meta Quest store listing</a>,
+        join the <a href={links.discord}>Fly Exterminator Discord</a>, or browse the
+        <a href={withBase("/press")}>press kit</a>.
       </p>
       <div class="btn-row">
         <a class="button secondary" href={game.storeUrl}>Meta store page</a>
+        <a class="button secondary" href={links.discord}>Discord community</a>
         <a class="button secondary" href={withBase("/press")}>Press kit</a>
       </div>
     </article>

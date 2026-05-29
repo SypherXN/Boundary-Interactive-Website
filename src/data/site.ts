@@ -6,7 +6,8 @@ export const links = {
   metaStore: "https://www.meta.com/experiences/fly-exterminator/26967497566216109",
   youtubeChannel: "https://www.youtube.com/@FlyExterminatorGame",
   youtubeTrailer: `https://www.youtube.com/watch?v=${youtubeTrailerId}`,
-  linkedinCompany: "https://www.linkedin.com/company/boundary-interactive-llc/"
+  linkedinCompany: "https://www.linkedin.com/company/boundary-interactive-llc/",
+  discord: "https://discord.gg/9hhGvvrBD2"
 } as const;
 
 /** Public site URL (GitHub Pages). Use in external channel bios for backlinks. */
@@ -31,6 +32,11 @@ export const externalBacklinkChecklist = [
     channel: "Meta Store listing",
     field: "Developer / support links where available",
     profileUrl: links.metaStore
+  },
+  {
+    channel: "Fly Exterminator Discord",
+    field: "Server invite / community link",
+    profileUrl: links.discord
   }
 ] as const;
 
@@ -43,6 +49,7 @@ export const studio = {
   socialLinks: [
     { label: "Boundary Interactive LinkedIn", href: links.linkedinCompany },
     { label: "Meta Store", href: links.metaStore },
+    { label: "Fly Exterminator Discord", href: links.discord },
     { label: "Press Kit", href: "/press" }
   ]
 };
@@ -108,6 +115,11 @@ export const pressKitAssets = [
     label: "Fly Exterminator Trailer Listing",
     href: links.youtubeTrailer,
     type: "Trailer"
+  },
+  {
+    label: "Fly Exterminator Discord Community",
+    href: links.discord,
+    type: "Community"
   }
 ] as const;
 

@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { game } from "../../data/site";
+import { game, links } from "../../data/site";
 import { getCollection } from "astro:content";
 import { ogImages, pageSeo } from "../../data/seo";
 import { formatDateUTC } from "../../utils/date";
@@ -42,6 +42,8 @@ const posts = (await getCollection("devlogs")).sort(
       <a href={withBase("/game")}>Fly Exterminator game page</a>
       •
       <a href={game.storeUrl}>Meta Quest store listing</a>
+      •
+      <a href={links.discord}>Discord community</a>
     </p>
   </section>
 </Layout>

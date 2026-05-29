@@ -73,6 +73,10 @@ function isLinkedIn(href: string): boolean {
   return href.includes("linkedin.com");
 }
 
+function isDiscord(href: string): boolean {
+  return /discord\.gg|discord\.com\/invite/i.test(href);
+}
+
 function isTeamSite(href: string): boolean {
   return href.includes("matthewgtran.com") || href.includes("notion.site");
 }
@@ -132,6 +136,11 @@ function onLinkClick(event: MouseEvent) {
 
   if (isLinkedIn(href)) {
     track("linkedin_click", { link_text: label, cta_type: cta, link_url: href, page_path: path });
+    return;
+  }
+
+  if (isDiscord(href)) {
+    track("discord_click", { link_text: label, cta_type: cta, link_url: href, page_path: path });
     return;
   }
 

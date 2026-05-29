@@ -22,7 +22,7 @@ export function buildOrganizationSchema(site: SiteOrigin) {
     logo: absoluteUrl("/boundary-interactive-wordmark.svg", site),
     description: studio.description,
     email: studio.contactEmail,
-    sameAs: [links.linkedinCompany, links.youtubeChannel, links.metaStore]
+    sameAs: [links.linkedinCompany, links.youtubeChannel, links.metaStore, links.discord]
   };
 }
 

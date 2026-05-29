@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-import { game } from "../data/site";
+import { game, links } from "../data/site";
 import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { getCollection } from "astro:content";
@@ -105,6 +105,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
     <p>
       <strong>Where can I follow updates?</strong>
       Use the <a href={game.storeUrl}>Meta store listing</a>,
+      <a href={links.discord}>Discord community</a>,
       <a href={withBase("/devlog")}>devlog</a>, and
       <a href={withBase("/press")}>press kit</a>.
     </p>

@@ -8,7 +8,6 @@ import { getCollection } from "astro:content";
 import { buildVideoGameSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
 
-const [gameEntry] = await getCollection("games");
 const posts = (await getCollection("devlogs")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
@@ -23,7 +22,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
   jsonLd={buildVideoGameSchema(Astro.site, canonicalURL)}
 >
   <section class="hero">
-    <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
+    <p class="status">{game.statusBadge} • {game.platform}</p>
     <p class="muted release-target">{game.releaseTarget}</p>
     <h1>{game.title}</h1>
     <p>{game.pitch}</p>
@@ -114,9 +113,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
     <h2>Player FAQ</h2>
     <p><strong>Platform:</strong> {game.platform} (mixed reality; room setup and scene capture required).</p>
     <p>
-      <strong>Release:</strong> {game.status} — {game.releaseTarget}.
-    </p>
-    <p>
       <strong>Controls:</strong> Hand tracking for swatting flies; in-headset UI for menus and mode setup.
     </p>
     <p>
@@ -148,10 +144,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
     </section>
   )}
 
-  {gameEntry && (
-    <section class="panel">
-      <h2>Development timeline</h2>
-      <p>{gameEntry.data.timeline}</p>
-    </section>
-  )}
+  <section class="panel">
+    <h2>Development timeline</h2>
+    <p>{game.developmentTimeline}</p>
+  </section>
 </Layout>

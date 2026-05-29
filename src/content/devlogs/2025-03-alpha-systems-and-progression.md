@@ -2,6 +2,7 @@
 title: Alpha Systems and Progression
 date: 2025-03-13
 summary: We moved through Alpha by adding leaderboard integration, metrics tracking, progression flow, tutorials, and mode options/escalation logic.
+ogImage: /devlog/classlog-2025-03-alpha-leaderboard.png
 tags:
   - alpha
   - systems

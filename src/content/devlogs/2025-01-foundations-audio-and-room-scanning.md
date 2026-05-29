@@ -2,6 +2,7 @@
 title: "Foundations: Audio and Room Scanning"
 date: 2025-01-23
 summary: We validated directional audio cues and Quest 3 room-mesh plus hand-tracking fidelity as core technical foundations.
+ogImage: /devlog/classlog-2025-01-room-scan-hands.png
 tags:
   - prototyping
   - audio

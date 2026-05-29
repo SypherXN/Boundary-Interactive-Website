@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { game, links } from "../data/site";
+import { withBase } from "../utils/withBase";
+
+const title = "Page not found | Boundary Interactive";
+const description = "The page you requested could not be found on the Boundary Interactive website.";
+---
+
+<Layout title={title} description={description} noindex>
+  <section class="hero">
+    <h1>Page not found</h1>
+    <p>
+      We could not find that page. It may have moved or the link might be outdated.
+    </p>
+    <div class="btn-row">
+      <a class="button" href={withBase("/")}>Home</a>
+      <a class="button secondary" href={withBase("/game")}>{game.title}</a>
+      <a class="button secondary" href={withBase("/devlog")}>Devlog</a>
+      <a class="button secondary" href={withBase("/contact")}>Contact</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Popular links</h2>
+    <ul>
+      <li><a href={game.storeUrl}>Wishlist on Meta Store</a></li>
+      <li><a href={links.discord}>Fly Exterminator Discord</a></li>
+      <li><a href={withBase("/press")}>Press kit</a></li>
+      <li><a href={withBase("/about")}>Studio &amp; Team</a></li>
+    </ul>
+  </section>
+</Layout>

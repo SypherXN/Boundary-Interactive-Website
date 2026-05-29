@@ -1,13 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-const games = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/games" }),
-  schema: z.object({
-    timeline: z.string()
-  })
-});
-
 const devlogs = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/devlogs" }),
   schema: z.object({
@@ -20,4 +13,4 @@ const devlogs = defineCollection({
   })
 });
 
-export const collections = { games, devlogs };
+export const collections = { devlogs };

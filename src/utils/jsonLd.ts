@@ -39,14 +39,16 @@ export function buildVideoGameSchema(site: SiteOrigin, pageUrl: string) {
     contentRating: game.rating,
     url: pageUrl,
     image: absoluteUrl(socialOgImage.path, site),
+    datePublished: game.releaseDateIso,
+    publisher: organizationRef(site),
     offers: {
       "@type": "Offer",
       url: game.storeUrl,
       availability: "https://schema.org/PreOrder",
-      price: "0",
-      priceCurrency: "USD"
+      priceCurrency: "USD",
+      validFrom: game.releaseDateIso,
+      seller: organizationRef(site)
     },
-    publisher: organizationRef(site),
     trailer: {
       "@type": "VideoObject",
       name: `${game.title} Official Trailer`,

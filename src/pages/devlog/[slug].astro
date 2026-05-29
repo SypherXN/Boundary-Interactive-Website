@@ -8,23 +8,31 @@ import { withBase } from "../../utils/withBase";
 
 export async function getStaticPaths() {
   const posts = await getCollection("devlogs");
-  return posts.map((post) => ({
+  const sorted = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return sorted.map((post, index) => ({
     params: { slug: post.id },
-    props: { post }
+    props: {
+      post,
+      newerPost: sorted[index - 1] ?? null,
+      olderPost: sorted[index + 1] ?? null
+    }
   }));
 }
 
-const { post } = Astro.props;
+const { post, newerPost, olderPost } = Astro.props;
 const { Content } = await render(post);
 const seo = devlogPostSeo(post.data.title, post.data.summary);
-const ogMeta = devlogOgForPost(post.data.ogImage);
+const shareMeta = devlogOgForPost(post.data.ogImage);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <Layout
   title={seo.title}
   description={seo.description}
-  ogImage={ogMeta.path}
+  ogImage={shareMeta.path}
+  ogImageWidth={shareMeta.width}
+  ogImageHeight={shareMeta.height}
+  ogImageAlt={shareMeta.alt}
   ogType="article"
   articlePublishedTime={post.data.date}
   articleModifiedTime={post.data.date}
@@ -41,6 +49,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
     <p class="muted">{formatDateUTC(post.data.date)} • {post.data.tags.join(", ")}</p>
     <h1>{post.data.title}</h1>
     <Content />
+    <nav class="devlog-post-nav" aria-label="Devlog post navigation">
+      {newerPost ? (
+        <p class="devlog-post-nav-item">
+          <span class="devlog-post-nav-label">Newer</span>
+          <a href={withBase(`/devlog/${newerPost.id}/`)}>{newerPost.data.title}</a>
+        </p>
+      ) : (
+        <p class="devlog-post-nav-item devlog-post-nav-muted">
+          <span class="devlog-post-nav-label">Newer</span>
+          <span>Latest post</span>
+        </p>
+      )}
+      {olderPost ? (
+        <p class="devlog-post-nav-item">
+          <span class="devlog-post-nav-label">Older</span>
+          <a href={withBase(`/devlog/${olderPost.id}/`)}>{olderPost.data.title}</a>
+        </p>
+      ) : (
+        <p class="devlog-post-nav-item devlog-post-nav-muted">
+          <span class="devlog-post-nav-label">Older</span>
+          <span>First post</span>
+        </p>
+      )}
+    </nav>
     <p class="devlog-nav">
       <a href={withBase("/game")}>Fly Exterminator game page</a>
       •

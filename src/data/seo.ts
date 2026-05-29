@@ -30,7 +30,7 @@ export const pageSeo = {
   home: {
     title: "Boundary Interactive | Mixed-Reality Indie Game Studio for Meta Quest",
     description:
-      "Boundary Interactive builds mixed-reality games for Meta Quest. Fly Exterminator is Coming Soon — Early Access on Meta Store, targeting late June 2026."
+      "Boundary Interactive builds mixed-reality games for Meta Quest. Fly Exterminator Early Access on Meta Store, targeting late June 2026."
   },
   about: {
     title: "Studio & Team | Boundary Interactive",
@@ -53,7 +53,7 @@ export const pageSeo = {
       "Development updates from prototyping through USC Games Expo 2026 and Early Access prep for Fly Exterminator on Meta Quest 3."
   },
   game: {
-    title: `Fly Exterminator — Coming ${game.releaseWindow} | Meta Quest 3 MR Game`,
+    title: `Fly Exterminator — Early Access ${game.releaseWindow} | Meta Quest 3 MR Game`,
     description: `${game.pitch} ${game.status} (${game.releaseTarget}). Wishlist on Meta Store.`
   }
 } as const;

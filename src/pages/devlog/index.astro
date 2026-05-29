@@ -4,11 +4,19 @@ import { game, links } from "../../data/site";
 import { getCollection } from "astro:content";
 import { ogImages, pageSeo } from "../../data/seo";
 import { formatDateUTC } from "../../utils/date";
+import { truncateSummary } from "../../utils/text";
 import { withBase } from "../../utils/withBase";
 
 const posts = (await getCollection("devlogs")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+const [featured, ...olderPosts] = posts;
+
+const tagSet = new Set<string>();
+for (const post of posts) {
+  for (const tag of post.data.tags) tagSet.add(tag);
+}
+const allTags = [...tagSet].sort((a, b) => a.localeCompare(b));
 ---
 
 <Layout
@@ -27,17 +35,59 @@ const posts = (await getCollection("devlogs")).sort(
     </p>
   </section>
 
-  <section class="grid">
-    {posts.map((post) => (
-      <article class="panel">
-        <p class="muted">{formatDateUTC(post.data.date)}</p>
+  <div data-devlog-filter>
+    <section class="panel devlog-filters" aria-label="Filter devlog posts by tag">
+      <p class="devlog-filters-label">Filter by topic</p>
+      <div class="devlog-tag-list" role="group" aria-label="Devlog tags">
+        <button type="button" class="devlog-tag is-active" data-devlog-tag="all" aria-pressed="true">
+          All
+        </button>
+        {allTags.map((tag) => (
+          <button type="button" class="devlog-tag" data-devlog-tag={tag} aria-pressed="false">
+            {tag}
+          </button>
+        ))}
+      </div>
+    </section>
+
+    {featured && (
+      <section
+        class="panel devlog-featured"
+        data-devlog-item
+        data-devlog-tags={featured.data.tags.join(",")}
+      >
+        <p class="devlog-featured-label">Latest</p>
+        <p class="muted">{formatDateUTC(featured.data.date)}</p>
         <h2>
-          <a href={withBase(`/devlog/${post.id}/`)}>{post.data.title}</a>
+          <a href={withBase(`/devlog/${featured.id}/`)}>{featured.data.title}</a>
         </h2>
-        <p>{post.data.summary}</p>
-      </article>
-    ))}
-  </section>
+        <p>{featured.data.summary}</p>
+        <p class="devlog-card-tags muted">{featured.data.tags.join(" · ")}</p>
+        <p>
+          <a class="button" href={withBase(`/devlog/${featured.id}/`)}>Read latest post</a>
+        </p>
+      </section>
+    )}
+
+    {olderPosts.length > 0 && (
+      <section class="grid">
+        {olderPosts.map((post) => (
+          <article class="panel" data-devlog-item data-devlog-tags={post.data.tags.join(",")}>
+            <p class="muted">{formatDateUTC(post.data.date)}</p>
+            <h2>
+              <a href={withBase(`/devlog/${post.id}/`)}>{post.data.title}</a>
+            </h2>
+            <p>{truncateSummary(post.data.summary)}</p>
+            <p class="devlog-card-tags muted">{post.data.tags.join(" · ")}</p>
+          </article>
+        ))}
+      </section>
+    )}
+
+    <p class="panel devlog-filter-empty" data-devlog-empty hidden>
+      No posts match this tag. <button type="button" class="devlog-tag-inline" data-devlog-tag="all">Show all</button>
+    </p>
+  </div>
 
   <section class="panel">
     <p>
@@ -49,3 +99,7 @@ const posts = (await getCollection("devlogs")).sort(
     </p>
   </section>
 </Layout>
+
+<script>
+  import "../../scripts/devlog-filter.ts";
+</script>

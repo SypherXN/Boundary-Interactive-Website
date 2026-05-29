@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { gaMeasurementId, studio } from "../data/site";
+import { pageSeo } from "../data/seo";
+import { withBase } from "../utils/withBase";
+
+const privacySeo = {
+  title: "Privacy Notice | Boundary Interactive",
+  description:
+    "How Boundary Interactive uses cookies and Google Analytics on this website, and how to manage your preferences."
+};
+---
+
+<Layout title={privacySeo.title} description={privacySeo.description} noindex>
+  <section class="hero">
+    <h1>Privacy Notice</h1>
+    <p class="muted">Last updated: May 29, 2026</p>
+    <p>
+      This notice describes how {studio.legalName} (“we”, “us”) handles information when you visit our
+      official website.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Who we are</h2>
+    <p>
+      {studio.legalName} operates this site for {studio.name} and Fly Exterminator. Contact:
+      <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Analytics cookies (optional)</h2>
+    <p>
+      With your consent, we use <strong>Google Analytics 4</strong> (measurement ID
+      {gaMeasurementId}) to collect aggregated usage data—such as pages visited, approximate region,
+      and device type—to improve the site. We do not use this website for advertising or sell your
+      data.
+    </p>
+    <p>
+      If you decline analytics, we do not enable analytics storage cookies. You can change your choice
+      anytime by clearing site data for this domain and revisiting, or use the buttons below.
+    </p>
+    <div class="btn-row cookie-privacy-actions">
+      <button type="button" class="button" data-consent="granted">Accept analytics</button>
+      <button type="button" class="button secondary" data-consent="denied">Decline analytics</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Legal basis (EEA / UK visitors)</h2>
+    <p>
+      Where required by law (including the GDPR), we rely on your <strong>consent</strong> before
+      enabling analytics cookies. Essential technical storage needed to deliver the site (for example,
+      remembering your cookie choice) is used based on our legitimate interest in operating a secure,
+      functional website.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Your rights</h2>
+    <p>
+      Depending on where you live, you may have rights to access, correct, delete, or restrict
+      processing of personal data. To exercise these rights, email
+      <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>External links</h2>
+    <p>
+      This site links to third-party services (Meta Store, YouTube, Discord, LinkedIn). Their privacy
+      practices are governed by their own policies.
+    </p>
+    <p>
+      <a href={withBase("/contact")}>Contact</a>
+      ·
+      <a href={withBase("/")}>Home</a>
+    </p>
+  </section>
+</Layout>
+
+<script>
+  import { writeConsent } from "../scripts/consent.ts";
+
+  document.querySelectorAll<HTMLButtonElement>("[data-consent]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const choice = button.dataset.consent;
+      if (choice === "granted" || choice === "denied") {
+        writeConsent(choice);
+        button.textContent = choice === "granted" ? "Accepted" : "Declined";
+      }
+    });
+  });
+</script>

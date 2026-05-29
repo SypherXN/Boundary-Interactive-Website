@@ -1,0 +1,64 @@
+---
+import { withBase } from "../utils/withBase";
+---
+
+<div
+  id="cookie-consent"
+  class="cookie-consent"
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-desc"
+  hidden
+>
+  <div class="cookie-consent-inner">
+    <p id="cookie-consent-title" class="cookie-consent-title">Cookie preferences</p>
+    <p id="cookie-consent-desc" class="cookie-consent-desc">
+      We use optional analytics cookies (Google Analytics) to understand how visitors use this site.
+      You can accept or decline. Read our
+      <a href={withBase("/privacy")}>privacy notice</a> for details.
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" class="button cookie-accept" data-consent="granted">
+        Accept analytics
+      </button>
+      <button type="button" class="button secondary cookie-decline" data-consent="denied">
+        Decline
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initConsentFromStorage, readConsent, writeConsent } from "../scripts/consent.ts";
+
+  const banner = document.getElementById("cookie-consent");
+
+  function showBanner() {
+    if (!banner) return;
+    banner.hidden = false;
+  }
+
+  function hideBanner() {
+    if (!banner) return;
+    banner.hidden = true;
+  }
+
+  function bindButtons() {
+    banner?.querySelectorAll<HTMLButtonElement>("[data-consent]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const choice = button.dataset.consent;
+        if (choice === "granted" || choice === "denied") {
+          writeConsent(choice);
+          hideBanner();
+        }
+      });
+    });
+  }
+
+  initConsentFromStorage();
+  bindButtons();
+
+  if (!readConsent()) {
+    showBanner();
+  }
+</script>

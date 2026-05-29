@@ -36,7 +36,7 @@ Launch copy, store links, team info, press kit assets, and social URLs live in `
 
 Page image paths are defined in `src/data/images.ts`. Devlog markdown uses the same `/images/...` and `/devlog/...` paths.
 
-The `games` content collection only stores long-form timeline text for the game page. Devlogs stay in `src/content/devlogs/` (editorial content).
+Game development timeline and launch copy live in `src/data/site.ts` under `game.*`. Devlogs stay in `src/content/devlogs/` (editorial content).
 
 ## SEO
 
@@ -54,7 +54,9 @@ The `games` content collection only stores long-form timeline text for the game 
 
 Both are **free**. Full step-by-step setup: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
 
-Set GitHub Actions **Variable** `PUBLIC_GA_MEASUREMENT_ID` to `G-21WBCSSXC4`, redeploy, then verify Search Console using **Google Analytics** (same Google account, Administrator on the GA property). The tag is also baked into `src/data/site.ts` so it ships on every deploy. Details: [docs/google-analytics-and-search-console.md](docs/google-analytics-and-search-console.md).
+GA4 uses **Consent Mode v2**: analytics cookies stay denied until the visitor accepts the banner (`src/components/CookieConsent.astro`, `src/scripts/consent.ts`). Custom events in `src/scripts/ga-events.ts` only run after consent.
+
+Set GitHub Actions **Variable** `PUBLIC_GA_MEASUREMENT_ID` to `G-21WBCSSXC4` only if you need a different stream ID. The measurement ID is also in `src/data/site.ts`. Privacy notice: `/privacy/`.
 
 ## Deployment
 

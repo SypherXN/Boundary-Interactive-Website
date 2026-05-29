@@ -2,6 +2,7 @@
 title: Release Candidate and Teaser Draft
 date: 2025-05-09
 summary: We prepared the release candidate and teaser draft by removing debug tools and polishing UI/audio.
+ogImage: /devlog/classlog-2025-05-release-candidate-gameplay.png
 tags:
   - release
   - polish

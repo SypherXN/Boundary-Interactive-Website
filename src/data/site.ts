@@ -129,9 +129,12 @@ export const teamMembers = [
 
 export const game = {
   title: "Fly Exterminator",
-  status: "Coming Soon",
+  /** Customer-facing launch label (use on badges, press, SEO). */
+  status: "Early Access",
   releaseWindow: "June 2026",
-  /** Shown on the game page and FAQ — aligns with devlog Early Access target. */
+  /** Compact status line for hero badges. */
+  statusBadge: "Early Access · June 2026",
+  /** Longer release line for FAQ and press. */
   releaseTarget: "Early Access on Meta Store, targeting late June 2026",
   platform: "Meta Quest 3",
   genres: ["Arcade", "Action", "Simulation"],
@@ -162,6 +165,10 @@ export const game = {
     "Early prototypes validated directional audio and room-mesh hand collision. Alpha added tutorials, leaderboards, progression, and multiple modes—including Food Defense with escalating challenge. Beta focused on UI readability, fly visibility, and playtest-driven balancing.",
     "For USC Games Expo 2026 we streamlined the demo around Time Attack, movable UI, and a stable showcase build. We are now polishing toward Early Access on Meta Store."
   ],
+  /** ISO date for structured data (Early Access target). */
+  releaseDateIso: "2026-06-30",
+  developmentTimeline:
+    "Prototyping (spatial audio, room mesh, hand collision) → vertical slice and alpha (modes, tutorials, leaderboards, Food Defense escalation) → beta UI and playtest polish → USC Games Expo 2026 showcase → Early Access prep on Meta Quest 3.",
   trailerEmbedUrl: `https://www.youtube.com/embed/${youtubeTrailerId}`
 };
 
@@ -203,6 +210,11 @@ export const pressKitAssets = [
     type: "Screenshots"
   },
   {
+    label: "Quest room scanning development screenshot (PNG)",
+    href: "/images/game/meta-quest-room-scanning.png",
+    type: "Screenshots"
+  },
+  {
     label: "Fly Exterminator game logo (PNG)",
     href: "/images/game/fly-exterminator-logo.png",
     type: "Logos"
@@ -213,7 +225,7 @@ export const pressKitAssets = [
     type: "Screenshots"
   },
   {
-    label: "Fly Exterminator Trailer Listing",
+    label: "Official trailer (YouTube watch page)",
     href: links.youtubeTrailer,
     type: "Trailer"
   },

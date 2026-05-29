@@ -1,8 +1,9 @@
 ---
 import Analytics from "../components/Analytics.astro";
 import AnalyticsEvents from "../components/AnalyticsEvents.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import JsonLd from "../components/JsonLd.astro";
-import { brand, defaultOgImage, links, studio, themeColor } from "../data/site";
+import { brand, defaultOgImage, gaMeasurementId, game, links, studio, themeColor } from "../data/site";
 import { ogImages, socialOgImage } from "../data/seo";
 import "../styles/global.css";
 import { absoluteUrl } from "../utils/absoluteUrl";
@@ -13,6 +14,9 @@ interface Props {
   description?: string;
   /** Path under /public for page-specific social preview. */
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageAlt?: string;
   ogType?: "website" | "article";
   noindex?: boolean;
   articlePublishedTime?: Date;
@@ -25,6 +29,9 @@ const {
   title,
   description = studio.description,
   ogImage = defaultOgImage,
+  ogImageWidth,
+  ogImageHeight,
+  ogImageAlt,
   ogType = "website",
   noindex = false,
   articlePublishedTime,
@@ -35,8 +42,13 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = absoluteUrl(ogImage, Astro.site);
-const ogMeta =
-  Object.values(ogImages).find((entry) => entry.path === ogImage) ?? socialOgImage;
+const ogMetaFromPath = Object.values(ogImages).find((entry) => entry.path === ogImage);
+const ogMeta = {
+  path: ogImage,
+  width: ogImageWidth ?? ogMetaFromPath?.width ?? socialOgImage.width,
+  height: ogImageHeight ?? ogMetaFromPath?.height ?? socialOgImage.height,
+  alt: ogImageAlt ?? ogMetaFromPath?.alt ?? socialOgImage.alt
+};
 const siteName = studio.name;
 const isArticle = ogType === "article";
 const rssHref = withBase("/rss.xml");
@@ -67,6 +79,12 @@ function isActive(href: string) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="alternate" type="application/rss+xml" title="Boundary Interactive Devlog" href={rssHref} />
     <Analytics />
     <link rel="icon" type="image/svg+xml" href={withBase(brand.icon.default)} />
@@ -110,7 +128,10 @@ function isActive(href: string) {
     <meta name="theme-color" content={themeColor} />
     {jsonLd && <JsonLd schema={jsonLd} />}
   </head>
-  <body data-ga-base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+  <body
+    data-ga-base={import.meta.env.BASE_URL.replace(/\/$/, "")}
+    data-ga-id={gaMeasurementId}
+  >
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="container">
@@ -121,7 +142,15 @@ function isActive(href: string) {
             <span class="brand-tag">Indie Game Studio</span>
           </span>
         </a>
-        <nav aria-label="Main navigation">
+        <button
+          type="button"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="main-nav-menu"
+        >
+          Menu
+        </button>
+        <nav id="main-nav-menu" class="main-nav" aria-label="Main navigation">
           <ul>
             {navItems.map(({ href, label }) => (
               <li>
@@ -139,8 +168,20 @@ function isActive(href: string) {
     </main>
     <footer class="site-footer">
       <div class="container">
-        <p class="muted">© {new Date().getFullYear()} {studio.legalName}</p>
+        <p class="muted footer-legal">
+          © {new Date().getFullYear()} {studio.legalName}
+          ·
+          <a href={withBase("/privacy")}>Privacy</a>
+        </p>
         <div class="footer-links" aria-label="Studio links">
+          <p class="footer-text-links">
+            <a href={withBase("/devlog")}>Devlog</a>
+            <span aria-hidden="true"> · </span>
+            <a href={rssHref}>RSS</a>
+            <span aria-hidden="true"> · </span>
+            <a href={game.storeUrl}>Meta Store</a>
+          </p>
+          <div class="footer-icon-row">
           <a
             class="footer-icon-link"
             href={`mailto:${studio.contactEmail}`}
@@ -199,9 +240,14 @@ function isActive(href: string) {
               />
             </svg>
           </a>
+          </div>
         </div>
       </div>
     </footer>
+    <CookieConsent />
     <AnalyticsEvents />
+    <script>
+      import "../scripts/nav.ts";
+    </script>
   </body>
 </html>

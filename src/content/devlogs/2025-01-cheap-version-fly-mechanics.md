@@ -2,6 +2,7 @@
 title: "Cheap Version: Fly Mechanics Pass"
 date: 2025-01-27
 summary: We built simplified "cheap version" prototypes to stress-test fly behavior, collision logic, and spatialized feedback loops.
+ogImage: /devlog/classlog-2025-01-cheap-obstacles.png
 tags:
   - prototyping
   - gameplay

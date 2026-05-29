@@ -10,9 +10,24 @@ Search Console verifies this site through **Google Analytics** — no HTML meta 
 
 ---
 
+## Cookie consent (EU / GDPR baseline)
+
+The site ships with:
+
+- **Consent Mode v2** defaults in `src/components/Analytics.astro` (`analytics_storage: denied` until accept).
+- A **cookie banner** (`src/components/CookieConsent.astro`) with Accept / Decline.
+- A **privacy notice** at `/privacy/` (also linked in the footer).
+- **Custom GA events** (`src/scripts/ga-events.ts`) that only run after the user accepts analytics.
+
+Declining cookies leaves the gtag snippet on the page (for Search Console verification) but does not store analytics cookies or send page views until the user accepts.
+
+To change copy or behavior, edit `CookieConsent.astro`, `src/scripts/consent.ts`, and `src/pages/privacy.astro`.
+
+---
+
 ## Step 1 — Deploy (GA tag is built in automatically)
 
-The Google tag (`G-21WBCSSXC4`) is included on every page from `src/data/site.ts` — no GitHub variable required.
+The Google tag (`G-21WBCSSXC4`) is included on every page from `src/data/site.ts`.
 
 Push to `main` and wait for the **Deploy to GitHub Pages** workflow to finish.
 
@@ -45,7 +60,7 @@ If verification fails:
 
 | Cause | Fix |
 |-------|-----|
-| Tag missing on live site | Set `PUBLIC_GA_MEASUREMENT_ID` in GitHub Variables and redeploy. |
+| Tag missing on live site | Redeploy from `main`; confirm `Analytics.astro` is in the layout. |
 | Wrong Google account | Sign in with the account that administers GA4. |
 | Not GA Administrator | Analytics → Admin → Property access management → add yourself as Administrator. |
 | GA just deployed | Wait 5–10 minutes, then try Verify again. |
@@ -80,8 +95,8 @@ After verification:
 
 ## Checklist
 
-- [ ] `PUBLIC_GA_MEASUREMENT_ID` = `G-21WBCSSXC4` in GitHub Actions variables
 - [ ] Site redeployed; live HTML contains the gtag script
+- [ ] Cookie banner and `/privacy/` page reviewed
 - [ ] Search Console property added (URL prefix)
 - [ ] Verified via **Google Analytics** method
 - [ ] Sitemap submitted
@@ -89,9 +104,9 @@ After verification:
 
 ---
 
-## GA4 custom events (automatic)
+## GA4 custom events (after consent)
 
-The site tracks engagement via `src/scripts/ga-events.ts` (no manual tagging on each link).
+The site tracks engagement via `src/scripts/ga-events.ts` (no manual tagging on each link). Events fire **only if the visitor accepted analytics cookies**.
 
 | Event | When it fires |
 |-------|----------------|
@@ -120,4 +135,4 @@ Override on any link: `data-ga-event="my_event"` and optional `data-ga-label="Re
 
 ## Privacy note
 
-GA4 uses cookies and collects usage data. For EU visitors you may eventually need a cookie notice; fine to launch without one for a small indie site, but revisit if you target EU marketing heavily.
+EU/EEA visitors see a consent banner before analytics cookies are enabled. Keep the privacy notice accurate if you add more trackers or embeds. This is not legal advice—consult a professional if you run paid campaigns in the EU.

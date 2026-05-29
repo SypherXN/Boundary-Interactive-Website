@@ -2,6 +2,7 @@
 title: Prototyping Objectives and Vertical Slice
 date: 2025-02-03
 summary: We tested objective variants, then moved into vertical slice implementation with core modes and loop structure.
+ogImage: /devlog/classlog-2025-02-vertical-slice-mode-select.png
 tags:
   - prototyping
   - gameplay

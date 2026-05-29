@@ -1,11 +1,14 @@
 /**
  * Client-side GA4 event tracking (click delegation + engagement).
- * Requires gtag from Analytics.astro.
+ * Runs only after analytics consent (Consent Mode v2).
  */
+
+import { hasAnalyticsConsent } from "./consent";
 
 type EventParams = Record<string, string | number | boolean | undefined>;
 
 function track(eventName: string, params: EventParams = {}) {
+  if (!hasAnalyticsConsent()) return;
   if (typeof window.gtag !== "function") return;
   window.gtag("event", eventName, params);
 }
@@ -247,17 +250,26 @@ function initTrailerSectionView() {
   observer.observe(iframe);
 }
 
+let trackingStarted = false;
+
 function init() {
+  if (trackingStarted || !hasAnalyticsConsent()) return;
+  trackingStarted = true;
   document.addEventListener("click", onLinkClick);
   initScrollDepth();
   initDevlogPageView();
   initTrailerSectionView();
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
+function boot() {
   init();
+  window.addEventListener("bi-consent-change", () => init());
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
 }
 
 declare global {

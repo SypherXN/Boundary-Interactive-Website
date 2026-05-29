@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-import { brand, game, links, studio } from "../data/site";
+import { brand, game, links, siteUrl, studio } from "../data/site";
 import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { buildOrganizationSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
+import { truncateSummary } from "../utils/text";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("devlogs")).sort(
@@ -21,22 +22,22 @@ const [latestDevlog] = posts;
   jsonLd={buildOrganizationSchema(Astro.site)}
 >
   <section class="home-logo-stage">
+    <h1 class="sr-only">{studio.name}</h1>
     <img
       class="studio-wordmark"
       src={withBase(brand.wordmark.default)}
-      alt="Boundary Interactive full logo."
+      alt=""
       width="760"
       height="266"
       fetchpriority="high"
+      aria-hidden="true"
     />
   </section>
 
   <section class="hero">
-    <h1>{studio.name}</h1>
-    <p>{studio.description}</p>
-    <h2 class="featured-game-title">{game.title}</h2>
-    <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
+    <p class="status">{game.statusBadge} • {game.platform}</p>
     <p class="muted release-target">{game.releaseTarget}</p>
+    <h2 class="featured-game-title">{game.title}</h2>
     <p>{game.pitch}</p>
     <figure class="media-block">
       <OptimizedImage
@@ -49,7 +50,7 @@ const [latestDevlog] = posts;
       />
     </figure>
     <div class="btn-row">
-      <a class="button" href={game.storeUrl}>Wishlist Fly Exterminator on Meta Store</a>
+      <a class="button" href={game.storeUrl}>Wishlist on Meta Store</a>
       <a class="button secondary" href={withBase("/game")}>Watch the trailer and learn more</a>
     </div>
   </section>
@@ -68,10 +69,12 @@ const [latestDevlog] = posts;
         <>
           <p>
             <a href={withBase(`/devlog/${latestDevlog.id}/`)}>{latestDevlog.data.title}</a>
-            — {latestDevlog.data.summary}
+            — {truncateSummary(latestDevlog.data.summary)}
           </p>
           <p>
-            <a href={withBase("/devlog")}>Read all devlog posts</a>
+            <a href={withBase(`/devlog/${latestDevlog.id}/`)}>Read more</a>
+            ·
+            <a href={withBase("/devlog")}>All devlog posts</a>
           </p>
         </>
       ) : (
@@ -85,12 +88,13 @@ const [latestDevlog] = posts;
       <h2>Follow development</h2>
       <p>
         Wishlist on the <a href={game.storeUrl}>Meta Store listing</a>, join the
-        <a href={links.discord}>Fly Exterminator Discord</a>, or browse the
+        <a href={links.discord}>Fly Exterminator Discord</a>, and share our
+        <a href={siteUrl}>official website</a> or browse the
         <a href={withBase("/press")}>press kit</a>.
       </p>
       <div class="btn-row">
+        <a class="button secondary" href={links.discord}>Join Discord</a>
         <a class="button secondary" href={game.storeUrl}>Meta Store</a>
-        <a class="button secondary" href={links.discord}>Discord</a>
         <a class="button secondary" href={withBase("/press")}>Press kit</a>
       </div>
     </article>

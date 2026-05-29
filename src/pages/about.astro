@@ -33,6 +33,18 @@ const teamImageByPhoto: Record<string, (typeof images)[keyof typeof images]> = {
       <p>{paragraph}</p>
     ))}
     <p class="muted">{game.releaseTarget}</p>
+    <figure class="about-expo-figure media-block">
+      <OptimizedImage
+        class="showcase-image"
+        src={images.devlogUscExpo.src}
+        alt="Matthew Tran and Chaeho Shin at USC Games Expo 2026 showcasing Fly Exterminator."
+        width={images.devlogUscExpo.width}
+        height={images.devlogUscExpo.height}
+      />
+      <figcaption class="about-expo-caption">
+        USC Games Expo 2026 — showcasing Fly Exterminator and gathering player feedback.
+      </figcaption>
+    </figure>
   </section>
 
   <section class="grid">

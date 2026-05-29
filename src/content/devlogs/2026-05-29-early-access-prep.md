@@ -45,7 +45,7 @@ The list does not stop there—we are also fixing edge cases found in room scann
 
 ### Official website and Discord
 
-We also shipped the **official Boundary Interactive website** for the studio and Fly Exterminator—game details, devlog, press kit, and contact info in one place: [Boundary Interactive website](https://sypherxn.github.io/Boundary-Interactive-Website/).
+We also shipped the **official Boundary Interactive website** for the studio and Fly Exterminator—game details, devlog, press kit, and contact info in one place.
 
 Alongside that, we set up the **Fly Exterminator Discord** so players, friends, and press have a direct line to us while we head toward Early Access. If you want updates, playtest chatter, and launch news as we get closer, **come hang out with us on Discord**—we would love to see you there.
 
@@ -53,8 +53,8 @@ Alongside that, we set up the **Fly Exterminator Discord** so players, friends, 
 
 - **Wishlist:** [Fly Exterminator on Meta Store](https://www.meta.com/experiences/fly-exterminator/26967497566216109)
 - **Join the community:** [Fly Exterminator Discord](https://discord.gg/9hhGvvrBD2) — hop in, say hi, and follow development with us
-- **Website:** [Boundary Interactive](https://sypherxn.github.io/Boundary-Interactive-Website/)
-- **Earlier posts:** browse the [devlog](https://sypherxn.github.io/Boundary-Interactive-Website/devlog/) for how we got here
+- **Website:** browse this site for the [game page](/game/), [devlog](/devlog/), and [press kit](/press/)
+- **Earlier posts:** see the [devlog index](/devlog/) for how we got here
 
 We will share more as Early Access gets closer.
 

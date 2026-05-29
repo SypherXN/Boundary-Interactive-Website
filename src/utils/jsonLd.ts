@@ -1,4 +1,4 @@
-import { game, links, siteUrl, studio, teamMembers } from "../data/site";
+import { brand, game, links, siteUrl, studio, teamMembers } from "../data/site";
 import { socialOgImage } from "../data/seo";
 import { absoluteUrl } from "./absoluteUrl";
 
@@ -19,7 +19,7 @@ export function buildOrganizationSchema(site: SiteOrigin) {
     name: studio.name,
     legalName: studio.legalName,
     url: siteUrl,
-    logo: absoluteUrl("/boundary-interactive-wordmark.svg", site),
+    logo: absoluteUrl(brand.wordmark.opaque, site),
     description: studio.description,
     email: studio.contactEmail,
     sameAs: [links.linkedinCompany, links.youtubeChannel, links.metaStore, links.discord]
@@ -81,7 +81,7 @@ export function buildBlogPostingSchema(options: {
       ...organizationRef(site),
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/boundary-interactive-icon.svg", site)
+        url: absoluteUrl(brand.icon.opaque, site)
       }
     },
     image: absoluteUrl(socialOgImage.path, site),

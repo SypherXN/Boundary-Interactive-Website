@@ -13,6 +13,38 @@ export const links = {
 /** Public site URL (GitHub Pages). Use in external channel bios for backlinks. */
 export const siteUrl = "https://sypherxn.github.io/Boundary-Interactive-Website/";
 
+/** Browser chrome color (matches --bg-elevated). */
+export const themeColor = "#2a3140";
+
+/**
+ * Studio logo paths (under /public). Paired with the dark site theme in global.css.
+ *
+ * | Where                         | Asset                    |
+ * |-------------------------------|--------------------------|
+ * | Header icon, home wordmark    | icon/wordmark transparent |
+ * | Favicon (SVG)                 | icon transparent          |
+ * | Favicon (PNG), Apple touch    | icon charcoal-*           |
+ * | JSON-LD, press opaque PNGs    | charcoal                  |
+ */
+export const brand = {
+  icon: {
+    /** Transparent SVG — white dashes + teal BI (use on dark backgrounds). */
+    default: "/brand/icon/transparent.svg",
+    transparent: "/brand/icon/transparent.svg",
+    /** Opaque charcoal badge — iOS, structured data, press. */
+    opaque: "/brand/icon/charcoal.svg",
+    opaquePng: "/brand/icon/charcoal.png"
+  },
+  wordmark: {
+    default: "/brand/wordmark/transparent.svg",
+    transparent: "/brand/wordmark/transparent.svg",
+    opaque: "/brand/wordmark/charcoal.svg",
+    opaquePng: "/brand/wordmark/charcoal.png"
+  },
+  appleTouchIcon: "/brand/icon/charcoal-180.png",
+  favicon32: "/brand/icon/charcoal-32.png"
+} as const;
+
 /** GA4 measurement ID (public in page source). Used for analytics and Search Console verification. */
 export const gaMeasurementId = "G-21WBCSSXC4";
 
@@ -104,8 +136,23 @@ export const game = {
 /** Press kit download/list links (paths are under /public). */
 export const pressKitAssets = [
   {
-    label: "Boundary Interactive Logo Pack",
-    href: "/fly-exterminator-logo.png",
+    label: "Studio icon (SVG, transparent)",
+    href: brand.icon.default,
+    type: "Logos"
+  },
+  {
+    label: "Studio icon (PNG, charcoal background)",
+    href: brand.icon.opaquePng,
+    type: "Logos"
+  },
+  {
+    label: "Studio wordmark (SVG, transparent)",
+    href: brand.wordmark.default,
+    type: "Logos"
+  },
+  {
+    label: "Studio wordmark (PNG, charcoal background)",
+    href: brand.wordmark.opaquePng,
     type: "Logos"
   },
   {

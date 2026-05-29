@@ -22,6 +22,8 @@ Production builds use `BASE_PATH=/Boundary-Interactive-Website` in CI (see deplo
 
 Launch copy, store links, team info, press kit assets, and social URLs live in `src/data/site.ts`. Update `game.status`, `game.releaseWindow`, `links.*`, and `pressKitAssets` there when anything changes for the store or marketing.
 
+**Brand logos:** Assets live under `public/brand/` (`icon/` and `wordmark/`). The site uses transparent SVGs on a dark charcoal/teal theme; `charcoal` (opaque) is for iOS icons, JSON-LD, and press PNGs. Regenerate with `npm run brand:export`.
+
 The `games` content collection only stores long-form timeline text for the game page. Devlogs stay in `src/content/devlogs/` (editorial content).
 
 ## SEO
@@ -32,7 +34,7 @@ The `games` content collection only stores long-form timeline text for the game 
 - **Social image:** `public/og-social.png` (1200×630) is the default share preview.
 - **Sitemap:** `sitemap-index.xml` on build; devlog URLs use each post’s `date` as `lastmod`. `robots.txt` points crawlers to the sitemap.
 
-**Images:** Run `npm run images:optimize` after adding PNGs to `public/` (creates WebP companions, regenerates `og-social.png` from hero art, and `apple-touch-icon.png`).
+**Images:** Run `npm run images:optimize` after adding PNGs to `public/` (creates WebP companions, regenerates `og-social.png` from hero art, and refreshes `apple-touch-icon.png` from the charcoal studio icon).
 
 **Off-site backlinks:** `siteUrl` and a checklist live in `src/data/site.ts`; the Contact page lists where to paste the official URL (LinkedIn, YouTube, Meta).
 

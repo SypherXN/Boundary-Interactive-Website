@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-import { game, links, studio } from "../data/site";
+import { brand, game, links, studio } from "../data/site";
 import { images } from "../data/images";
 import { ogImages, pageSeo } from "../data/seo";
 import { buildOrganizationSchema } from "../utils/jsonLd";
@@ -15,7 +15,7 @@ import { withBase } from "../utils/withBase";
   jsonLd={buildOrganizationSchema(Astro.site)}
 >
   <section class="home-logo-stage">
-    <img class="studio-wordmark" src={withBase("/boundary-interactive-wordmark.svg")} alt="Boundary Interactive full logo." />
+    <img class="studio-wordmark" src={withBase(brand.wordmark.default)} alt="Boundary Interactive full logo." />
   </section>
 
   <section class="hero">

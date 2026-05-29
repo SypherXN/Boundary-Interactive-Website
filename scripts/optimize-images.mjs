@@ -24,7 +24,7 @@ async function walk(dir) {
 /** Branded OG card and iOS icon from existing game art. */
 async function createBrandedAssets() {
   const hero = path.join(publicDir, "fly-exterminator-hero-art.png");
-  const logo = path.join(publicDir, "fly-exterminator-logo.png");
+  const studioIconOpaque = path.join(publicDir, "brand/icon/charcoal.svg");
 
   await sharp(hero)
     .resize(1200, 630, { fit: "cover", position: "centre" })
@@ -36,8 +36,13 @@ async function createBrandedAssets() {
     .webp({ quality: 85 })
     .toFile(path.join(publicDir, "og-social.webp"));
 
-  await sharp(logo)
-    .resize(180, 180, { fit: "contain", background: { r: 216, g: 243, b: 220, alpha: 1 } })
+  await sharp(studioIconOpaque, { density: 384 })
+    .resize(180, 180)
+    .png({ compressionLevel: 9 })
+    .toFile(path.join(publicDir, "brand/icon/charcoal-180.png"));
+
+  await sharp(studioIconOpaque, { density: 384 })
+    .resize(180, 180)
     .png({ compressionLevel: 9 })
     .toFile(path.join(publicDir, "apple-touch-icon.png"));
 }

@@ -166,6 +166,13 @@ nav a[aria-current="page"] {
   letter-spacing: -0.02em;
 }
 
+.hero .featured-game-title {
+  margin-top: 1.35rem;
+  margin-bottom: 0.35rem;
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  color: var(--accent);
+}
+
 .status {
   display: inline-flex;
   align-items: center;

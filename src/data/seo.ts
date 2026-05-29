@@ -28,9 +28,9 @@ export const ogImages = {
 /** Per-page `<title>` and meta descriptions (~150–160 chars). */
 export const pageSeo = {
   home: {
-    title: "Fly Exterminator — Mixed Reality Game for Meta Quest 3 | Boundary Interactive",
+    title: "Boundary Interactive | Mixed-Reality Indie Game Studio for Meta Quest",
     description:
-      "Wishlist Fly Exterminator, a mixed-reality fly-catching game for Meta Quest 3 from Boundary Interactive. Coming June 2026."
+      "Boundary Interactive is an indie studio building mixed-reality games for Meta Quest. Wishlist Fly Exterminator — coming June 2026."
   },
   game: {
     title: `Fly Exterminator — Coming ${game.releaseWindow} | Meta Quest 3 MR Game`,

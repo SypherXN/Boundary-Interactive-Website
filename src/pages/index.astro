@@ -26,8 +26,10 @@ import { withBase } from "../utils/withBase";
   </section>
 
   <section class="hero">
+    <h1>{studio.name}</h1>
+    <p>{studio.description}</p>
+    <h2 class="featured-game-title">{game.title}</h2>
     <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
-    <h1>{game.title}</h1>
     <p>{game.pitch}</p>
     <figure class="media-block">
       <OptimizedImage

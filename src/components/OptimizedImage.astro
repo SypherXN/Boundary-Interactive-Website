@@ -15,7 +15,7 @@ const pngSrc = withBase(src);
 const webpSrc = withBase(src.replace(/\.(png|jpe?g)$/i, ".webp"));
 ---
 
-<picture>
+<picture class="media-picture">
   <source srcset={webpSrc} type="image/webp" />
   <img
     src={pngSrc}

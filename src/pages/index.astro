@@ -22,13 +22,15 @@ import { withBase } from "../utils/withBase";
     <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
     <h1>{game.title}</h1>
     <p>{game.pitch}</p>
-    <OptimizedImage
-      class="showcase-image"
-      src={images.coverWide.src}
-      alt="Fly Exterminator wide hero cover art."
-      width={images.coverWide.width}
-      height={images.coverWide.height}
-    />
+    <figure class="media-block">
+      <OptimizedImage
+        class="showcase-image"
+        src={images.coverWide.src}
+        alt="Fly Exterminator wide hero cover art."
+        width={images.coverWide.width}
+        height={images.coverWide.height}
+      />
+    </figure>
     <div class="btn-row">
       <a class="button" href={game.storeUrl}>Wishlist Fly Exterminator on Meta</a>
       <a class="button secondary" href={withBase("/game")}>Explore the Fly Exterminator game page</a>

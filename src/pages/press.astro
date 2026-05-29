@@ -23,13 +23,15 @@ function pressAssetHref(href: string) {
       <strong> {studio.legalName}</strong>, currently listed as {game.status} for {game.releaseWindow}.
       Visit the <a href={withBase("/game")}>official Fly Exterminator game page</a> for trailers and screenshots.
     </p>
-    <OptimizedImage
-      class="showcase-image"
-      src={images.coverWide.src}
-      alt="Fly Exterminator wide hero cover art for press usage."
-      width={images.coverWide.width}
-      height={images.coverWide.height}
-    />
+    <figure class="media-block">
+      <OptimizedImage
+        class="showcase-image"
+        src={images.coverWide.src}
+        alt="Fly Exterminator wide hero cover art for press usage."
+        width={images.coverWide.width}
+        height={images.coverWide.height}
+      />
+    </figure>
   </section>
 
   <section class="panel">

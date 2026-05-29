@@ -23,51 +23,49 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
   jsonLd={buildVideoGameSchema(Astro.site, canonicalURL)}
 >
   <section class="hero">
-    <p class="status">{game.status} • {game.releaseWindow}</p>
+    <p class="status">{game.status} • {game.releaseWindow} • {game.platform}</p>
     <h1>{game.title}</h1>
     <p>{game.pitch}</p>
+    <p class="muted">{game.shortDescription}</p>
     <p class="muted">Genres: {game.genres.join(" / ")} • Rating: {game.rating}</p>
     <figure class="media-block">
       <OptimizedImage
         class="showcase-image"
         src={images.heroArt.src}
-        alt="Fly Exterminator key art showing player swatting a fly in a living room."
+        alt="Fly Exterminator key art showing a player swatting a fly in a living room."
         width={images.heroArt.width}
         height={images.heroArt.height}
         loading="eager"
       />
     </figure>
     <div class="btn-row">
-      <a class="button" href={game.storeUrl}>Wishlist on Meta</a>
+      <a class="button" href={game.storeUrl}>Wishlist on Meta Store</a>
       <a class="button secondary" href={withBase("/press")}>Fly Exterminator press kit</a>
     </div>
   </section>
 
   <section class="panel">
-    <h2>Official Trailer</h2>
-    <figure class="media-block">
-      <div class="video-embed">
-        <iframe
-          src={game.trailerEmbedUrl}
-          title="Fly Exterminator Official Trailer"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <figcaption class="media-caption">
-        Trailer footage from the latest polish pass leading into expo and Early Access prep.
-      </figcaption>
-    </figure>
+    <h2>About the game</h2>
+    {game.about.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
   </section>
 
   <section class="panel">
-    <h2>Feature Highlights</h2>
+    <h2>How it plays</h2>
+    <ol class="game-steps">
+      {game.howItPlays.map((step) => (
+        <li>{step}</li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="panel">
+    <h2>Feature highlights</h2>
     <ul>
-      <li>Room-scale mixed reality with Quest scene capture.</li>
-      <li>Quick-reflex gameplay designed for short sessions.</li>
-      <li>Satisfying fly-catching interactions integrated into your real environment.</li>
-      <li>Time-trial style score chasing and replayability.</li>
+      {game.highlights.map((item) => (
+        <li>{item}</li>
+      ))}
     </ul>
     <figure class="media-block">
       <OptimizedImage
@@ -78,7 +76,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
         height={images.roomScanning.height}
       />
       <figcaption class="media-caption">
-        Room-scanning tests that helped anchor fly behavior to real-world surfaces.
+        Room-scanning and hand-tracking tests that anchor fly paths and catches to your real environment.
       </figcaption>
     </figure>
     <figure class="media-block">
@@ -90,24 +88,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
         height={images.gameUi.height}
       />
       <figcaption class="media-caption">
-        Newest in-game UI tuned for quick setup, readability, and competitive score chasing.
+        Mixed-reality UI for mode setup and score chasing—designed for clarity during playtests and expo demos.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="panel">
+    <h2>Official trailer</h2>
+    <figure class="media-block">
+      <div class="video-embed">
+        <iframe
+          src={game.trailerEmbedUrl}
+          title="Fly Exterminator Official Trailer"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <figcaption class="media-caption">
+        Official trailer from the beta polish pass—showcasing mixed-reality fly catching ahead of Early Access.
       </figcaption>
     </figure>
   </section>
 
   <section class="panel">
     <h2>Player FAQ</h2>
-    <p><strong>Platform:</strong> {game.platform}</p>
-    <p><strong>Release status:</strong> {game.status} (target window {game.releaseWindow}).</p>
+    <p><strong>Platform:</strong> {game.platform} (mixed reality; room setup and scene capture required).</p>
+    <p>
+      <strong>Release:</strong> {game.status} — {game.releaseTarget}.
+    </p>
+    <p>
+      <strong>Controls:</strong> Hand tracking for swatting flies; in-headset UI for menus and mode setup.
+    </p>
+    <p>
+      <strong>Modes:</strong> Built around arcade score chasing—including Time Attack runs used for expo demos,
+      plus additional modes and tutorials developed through alpha and beta milestones.
+    </p>
     <p>
       <strong>Who is making it?</strong>
-      <a href={withBase("/about")}>Boundary Interactive</a>, founded by Matthew Tran and Chaeho Shin.
+      <a href={withBase("/about")}>Boundary Interactive</a>, a two-person studio founded by Matthew Tran and
+      Chaeho Shin. The team showcased the game at USC Games Expo 2026 and is polishing toward launch.
     </p>
     <p>
       <strong>Where can I follow updates?</strong>
-      Use the <a href={game.storeUrl}>Meta store listing</a>,
-      <a href={links.discord}>Discord community</a>,
-      <a href={withBase("/devlog")}>devlog</a>,
+      Wishlist on the <a href={game.storeUrl}>Meta Store listing</a>, join the
+      <a href={links.discord}>Discord community</a>, read the <a href={withBase("/devlog")}>devlog</a>, browse the
       <a href={withBase("/press")}>press kit</a>, or email
       <a href={`mailto:${game.contactEmail}`}>{game.contactEmail}</a>.
     </p>
@@ -115,7 +140,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
   {latestDevlog && (
     <section class="panel">
-      <h2>Latest Devlog</h2>
+      <h2>Latest devlog</h2>
       <p>
         <a href={withBase(`/devlog/${latestDevlog.id}/`)}>{latestDevlog.data.title}</a>
         — {latestDevlog.data.summary}
@@ -126,7 +151,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
   {gameEntry && (
     <section class="panel">
-      <h2>Development Timeline</h2>
+      <h2>Development timeline</h2>
       <p>{gameEntry.data.timeline}</p>
     </section>
   )}

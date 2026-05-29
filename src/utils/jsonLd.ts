@@ -31,7 +31,7 @@ export function buildVideoGameSchema(site: SiteOrigin, pageUrl: string) {
     "@context": "https://schema.org",
     "@type": "VideoGame",
     name: game.title,
-    description: game.pitch,
+    description: `${game.pitch} ${game.shortDescription}`,
     genre: game.genres,
     gamePlatform: game.platform,
     operatingSystem: game.platform,

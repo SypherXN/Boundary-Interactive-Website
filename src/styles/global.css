@@ -442,6 +442,15 @@ li {
   margin-top: 1rem;
 }
 
+.game-steps {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.game-steps li + li {
+  margin-top: 0.45rem;
+}
+
 .devlog-nav {
   margin-top: 1.5rem;
   padding-top: 1rem;

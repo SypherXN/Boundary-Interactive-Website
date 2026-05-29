@@ -34,7 +34,7 @@ export const pageSeo = {
   },
   game: {
     title: `Fly Exterminator — Coming ${game.releaseWindow} | Meta Quest 3 MR Game`,
-    description: `${game.pitch} ${game.status} on Meta Quest 3 — wishlist on the Meta Store.`
+    description: `${game.pitch} ${game.status} (${game.releaseTarget}). Wishlist on Meta Store.`
   },
   devlogIndex: {
     title: "Fly Exterminator Devlog | Boundary Interactive",

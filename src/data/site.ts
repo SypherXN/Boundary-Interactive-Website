@@ -120,6 +120,8 @@ export const game = {
   title: "Fly Exterminator",
   status: "Coming Soon",
   releaseWindow: "June 2026",
+  /** Shown on the game page and FAQ — aligns with devlog Early Access target. */
+  releaseTarget: "Early Access on Meta Store, targeting late June 2026",
   platform: "Meta Quest 3",
   genres: ["Arcade", "Action", "Simulation"],
   rating: "Everyone",
@@ -127,9 +129,28 @@ export const game = {
   /** Player support, press, and game-specific inquiries */
   contactEmail: "flyexterminatorgame@gmail.com",
   pitch:
-    "Catch virtual flies in your real room with quick-reflex mixed-reality gameplay built for Meta Quest 3.",
+    "Swat virtual flies in your real room. Fly Exterminator is a mixed-reality arcade game for Meta Quest 3 where hand-tracked reflexes, spatial audio, and room-scale play come together in fast score-chasing sessions.",
   shortDescription:
-    "Fly Exterminator is an arcade-style mixed-reality game where players chase flies integrated into their physical environment through Quest scene understanding.",
+    "Flies buzz through your scanned play space along furniture, walls, and floors. Listen for audio cues, track movement with your eyes, and slap them out of the air with your hands—no controllers required for the core catch.",
+  highlights: [
+    "Mixed reality anchored to your room with Quest scene understanding and spatial mesh.",
+    "Hand-tracked swatting tuned for natural, quick-reaction fly catches.",
+    "Spatial audio helps you locate flies as they move around your physical space.",
+    "Time Attack and additional modes built for short, replayable score runs.",
+    "Repositionable in-headset UI so menus stay readable anywhere in your play area.",
+    "Leaderboards, tutorials, and progression shaped through alpha, beta, and expo playtests."
+  ],
+  howItPlays: [
+    "Set up your play space with Quest room scanning so flies can travel along real surfaces.",
+    "Follow buzzing spatial audio and visual movement to find the next target.",
+    "Swat with your hands to catch flies and build score within the active mode timer.",
+    "Push for higher ranks on the leaderboard as difficulty and pace escalate."
+  ],
+  about: [
+    "Fly Exterminator is built around Meta Quest 3 mixed reality: your room becomes the level. Flies travel along scanned surfaces while you move through your real space to intercept them.",
+    "Early prototypes validated directional audio and room-mesh hand collision. Alpha added tutorials, leaderboards, progression, and multiple modes—including Food Defense with escalating challenge. Beta focused on UI readability, fly visibility, and playtest-driven balancing.",
+    "For USC Games Expo 2026 we streamlined the demo around Time Attack, movable UI, and a stable showcase build. We are now polishing toward Early Access on Meta Store."
+  ],
   trailerEmbedUrl: `https://www.youtube.com/embed/${youtubeTrailerId}`
 };
 

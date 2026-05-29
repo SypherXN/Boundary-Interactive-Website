@@ -1,3 +1,4 @@
+import { images } from "./images";
 import { game, teamMembers } from "./site";
 
 /** Dedicated 1200×630 social preview (see /public/og-social.png). */
@@ -11,15 +12,15 @@ export const socialOgImage = {
 export const ogImages = {
   default: socialOgImage,
   game: {
-    path: "/fly-exterminator-hero-art.png",
-    width: 1024,
-    height: 576,
+    path: images.heroArt.src,
+    width: images.heroArt.width,
+    height: images.heroArt.height,
     alt: "Fly Exterminator key art — mixed-reality fly-catching on Meta Quest 3"
   },
   press: {
-    path: "/fly-exterminator-cover-wide.png",
-    width: 1024,
-    height: 307,
+    path: images.coverWide.src,
+    width: images.coverWide.width,
+    height: images.coverWide.height,
     alt: "Fly Exterminator wide cover art for press and social sharing"
   }
 } as const;

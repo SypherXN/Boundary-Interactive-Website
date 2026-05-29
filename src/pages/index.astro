@@ -15,7 +15,14 @@ import { withBase } from "../utils/withBase";
   jsonLd={buildOrganizationSchema(Astro.site)}
 >
   <section class="home-logo-stage">
-    <img class="studio-wordmark" src={withBase(brand.wordmark.default)} alt="Boundary Interactive full logo." />
+    <img
+      class="studio-wordmark"
+      src={withBase(brand.wordmark.default)}
+      alt="Boundary Interactive full logo."
+      width="760"
+      height="266"
+      fetchpriority="high"
+    />
   </section>
 
   <section class="hero">
@@ -29,6 +36,7 @@ import { withBase } from "../utils/withBase";
         alt="Fly Exterminator wide hero cover art."
         width={images.coverWide.width}
         height={images.coverWide.height}
+        loading="eager"
       />
     </figure>
     <div class="btn-row">

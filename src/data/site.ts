@@ -90,7 +90,7 @@ export const teamMembers = [
   {
     name: "Matthew Tran",
     role: "Co-Founder, Game Designer, Developer",
-    photo: "/matthew-tran.png",
+    photo: "/images/team/matthew-tran.png",
     bio: "Matthew co-founded Boundary Interactive and leads design and development for Fly Exterminator.",
     responsibilities:
       "Core gameplay loop design, mixed-reality interactions, player-facing UI, and iteration from playtest feedback.",
@@ -102,7 +102,7 @@ export const teamMembers = [
   {
     name: "Chaeho Shin",
     role: "Co-Founder, Developer",
-    photo: "/chaeho-shin.png",
+    photo: "/images/team/chaeho-shin.png",
     bio: "Chaeho co-founded Boundary Interactive and co-develops Fly Exterminator across production milestones.",
     responsibilities:
       "Co-development across engineering and feature delivery, development workflow, and production execution.",
@@ -156,7 +156,22 @@ export const pressKitAssets = [
     type: "Logos"
   },
   {
-    label: "Fly Exterminator Screenshots",
+    label: "Fly Exterminator key art (PNG)",
+    href: "/images/game/fly-exterminator-hero-art.png",
+    type: "Screenshots"
+  },
+  {
+    label: "Fly Exterminator cover art (PNG)",
+    href: "/images/game/fly-exterminator-cover-wide.png",
+    type: "Screenshots"
+  },
+  {
+    label: "Fly Exterminator in-game UI (PNG)",
+    href: "/images/game/fly-exterminator-ui.png",
+    type: "Screenshots"
+  },
+  {
+    label: "Meta Store listing (more screenshots)",
     href: links.metaStore,
     type: "Screenshots"
   },

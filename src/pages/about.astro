@@ -8,8 +8,8 @@ import { buildOrganizationSchema } from "../utils/jsonLd";
 import { withBase } from "../utils/withBase";
 
 const teamImageByPhoto: Record<string, (typeof images)[keyof typeof images]> = {
-  "/matthew-tran.png": images.teamMatthew,
-  "/chaeho-shin.png": images.teamChaeho
+  [images.teamMatthew.src]: images.teamMatthew,
+  [images.teamChaeho.src]: images.teamChaeho
 };
 ---
 

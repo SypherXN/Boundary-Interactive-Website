@@ -16,7 +16,7 @@ The competition energy around scoring was one of the best parts of the day, and 
 
 We are continuing to polish the experience as we push toward a **late-June Early Access target** on Meta Store: [Fly Exterminator on Meta Store](https://www.meta.com/experiences/fly-exterminator/26967497566216109).
 
-![Matthew Tran and Chaeho Shin holding the Fly Exterminator banner at USC Games Expo 2026.](/usc-games-expo-2026.png)
+![Matthew Tran and Chaeho Shin holding the Fly Exterminator banner at USC Games Expo 2026.](/devlog/usc-games-expo-2026.png)
 
 *Holding up our Fly Exterminator banner and cover art at the showcase.*
 

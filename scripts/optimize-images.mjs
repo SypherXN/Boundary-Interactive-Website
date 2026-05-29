@@ -23,7 +23,7 @@ async function walk(dir) {
 
 /** Branded OG card and iOS icon from existing game art. */
 async function createBrandedAssets() {
-  const hero = path.join(publicDir, "fly-exterminator-hero-art.png");
+  const hero = path.join(publicDir, "images/game/fly-exterminator-hero-art.png");
   const studioIconOpaque = path.join(publicDir, "brand/icon/charcoal.svg");
 
   await sharp(hero)

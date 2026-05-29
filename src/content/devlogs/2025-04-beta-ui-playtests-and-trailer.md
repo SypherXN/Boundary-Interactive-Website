@@ -12,7 +12,7 @@ April work centered on Beta polish and communication assets. We redesigned menus
 
 Alongside gameplay fixes, we organized survey and metrics data for presentations and produced the first trailer storyboard/editing pass.
 
-![Newest in-game UI version used during Beta polish and playtesting.](/fly-exterminator-ui.png)
+![Newest in-game UI version used during Beta polish and playtesting.](/images/game/fly-exterminator-ui.png)
 
 *Newest UI version used for clearer mode options and playtest readability.*
 

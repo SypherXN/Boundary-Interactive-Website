@@ -22,7 +22,19 @@ Production builds use `BASE_PATH=/Boundary-Interactive-Website` in CI (see deplo
 
 Launch copy, store links, team info, press kit assets, and social URLs live in `src/data/site.ts`. Update `game.status`, `game.releaseWindow`, `links.*`, and `pressKitAssets` there when anything changes for the store or marketing.
 
-**Brand logos:** Assets live under `public/brand/` (`icon/` and `wordmark/`). The site uses transparent SVGs on a dark charcoal/teal theme; `charcoal` (opaque) is for iOS icons, JSON-LD, and press PNGs. Regenerate with `npm run brand:export`.
+**Brand logos:** `public/brand/` (`icon/`, `wordmark/`). Regenerate with `npm run brand:export`.
+
+**Static assets (`public/`):**
+
+| Path | Contents |
+|------|----------|
+| `brand/` | Studio icon + wordmark (transparent + charcoal) |
+| `images/game/` | Fly Exterminator marketing art (hero, cover, UI, logo, room scan) |
+| `images/team/` | Team headshots |
+| `devlog/` | Images referenced from devlog posts only |
+| Root | `og-social.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` |
+
+Page image paths are defined in `src/data/images.ts`. Devlog markdown uses the same `/images/...` and `/devlog/...` paths.
 
 The `games` content collection only stores long-form timeline text for the game page. Devlogs stay in `src/content/devlogs/` (editorial content).
 

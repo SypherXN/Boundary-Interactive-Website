@@ -14,12 +14,12 @@ To make the expo demo easier for fast player rotation, we adapted the game flow 
 
 In parallel, we collaborated with **Yan YiAn** on refreshed logo and cover-art assets used in showcase materials.
 
-![Fly Exterminator official logo prepared for expo-facing materials.](/fly-exterminator-logo.png)
+![Fly Exterminator official logo prepared for expo-facing materials.](/images/game/fly-exterminator-logo.png)
 
 *Updated Fly Exterminator logo package prepared for expo presentation assets.*
 
 We also finalized merchandising prep before the event, including fly plushies, stickers, business cards, hoodies, and cups.
 
-![Fly Exterminator hero cover used across pre-expo showcase collateral.](/fly-exterminator-cover-wide.png)
+![Fly Exterminator hero cover used across pre-expo showcase collateral.](/images/game/fly-exterminator-cover-wide.png)
 
 *Hero cover art used across booth visuals, presentation slides, and promotional materials.*

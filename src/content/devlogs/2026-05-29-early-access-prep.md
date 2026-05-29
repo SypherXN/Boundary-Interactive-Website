@@ -1,13 +1,14 @@
 ---
 title: Early Access Prep — Platform, UI, and Balance Pass
 date: 2026-05-29
-summary: With USC Games Expo behind us, we are focused on Early Access readiness—movable UI, OpenXR migration, broader headset support, scoring balance, Meta leaderboard accounts, and quality-of-life polish.
+summary: Early Access prep continues on OpenXR, UI, and balance—plus we launched the official Boundary Interactive website and Fly Exterminator Discord for the community.
 ogImage: /images/game/fly-exterminator-ui.png
 tags:
   - early-access
   - polish
   - platform
   - ui
+  - community
 ---
 
 USC Games Expo gave us a clear picture of what players respond to in **Fly Exterminator**. Since then, our focus has shifted to shipping a build we are confident putting in players’ hands for **Early Access on Meta Store** (still targeting late June 2026).
@@ -42,7 +43,20 @@ We are **hooking up Meta accounts to the leaderboard** so scores can persist and
 
 The list does not stop there—we are also fixing edge cases found in room scanning, tightening audio readability for fly localization, and continuing stability work so the build holds up across longer sessions and repeated installs.
 
-If you want to follow along, wishlist on the [Meta Store listing](https://www.meta.com/experiences/fly-exterminator/26967497566216109), join the [Discord](https://discord.gg/9hhGvvrBD2), or read earlier posts for how we got here. We will share more as Early Access gets closer.
+### Official website and Discord
+
+We also shipped the **official Boundary Interactive website** for the studio and Fly Exterminator—game details, devlog, press kit, and contact info in one place: [Boundary Interactive website](https://sypherxn.github.io/Boundary-Interactive-Website/).
+
+Alongside that, we set up the **Fly Exterminator Discord** so players, friends, and press have a direct line to us while we head toward Early Access. If you want updates, playtest chatter, and launch news as we get closer, **come hang out with us on Discord**—we would love to see you there.
+
+### Follow along
+
+- **Wishlist:** [Fly Exterminator on Meta Store](https://www.meta.com/experiences/fly-exterminator/26967497566216109)
+- **Join the community:** [Fly Exterminator Discord](https://discord.gg/9hhGvvrBD2) — hop in, say hi, and follow development with us
+- **Website:** [Boundary Interactive](https://sypherxn.github.io/Boundary-Interactive-Website/)
+- **Earlier posts:** browse the [devlog](https://sypherxn.github.io/Boundary-Interactive-Website/devlog/) for how we got here
+
+We will share more as Early Access gets closer.
 
 ![Fly Exterminator in-game UI used during Early Access polish.](/images/game/fly-exterminator-ui.png)
 

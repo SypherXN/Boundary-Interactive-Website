@@ -106,8 +106,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
       <strong>Where can I follow updates?</strong>
       Use the <a href={game.storeUrl}>Meta store listing</a>,
       <a href={links.discord}>Discord community</a>,
-      <a href={withBase("/devlog")}>devlog</a>, and
-      <a href={withBase("/press")}>press kit</a>.
+      <a href={withBase("/devlog")}>devlog</a>,
+      <a href={withBase("/press")}>press kit</a>, or email
+      <a href={`mailto:${game.contactEmail}`}>{game.contactEmail}</a>.
     </p>
   </section>
 

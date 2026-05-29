@@ -45,7 +45,7 @@ export const studio = {
   legalName: "Boundary Interactive LLC",
   description:
     "Boundary Interactive is a two-person indie game studio building mixed-reality games for Meta Quest.",
-  contactEmail: "flyexterminatorgame@gmail.com",
+  contactEmail: "boundaryinteractivellc@gmail.com",
   socialLinks: [
     { label: "Boundary Interactive LinkedIn", href: links.linkedinCompany },
     { label: "Meta Store", href: links.metaStore },
@@ -92,6 +92,8 @@ export const game = {
   genres: ["Arcade", "Action", "Simulation"],
   rating: "Everyone",
   storeUrl: links.metaStore,
+  /** Player support, press, and game-specific inquiries */
+  contactEmail: "flyexterminatorgame@gmail.com",
   pitch:
     "Catch virtual flies in your real room with quick-reflex mixed-reality gameplay built for Meta Quest 3.",
   shortDescription:

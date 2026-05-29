@@ -26,7 +26,16 @@ const mappedOfficialLinks = studio.socialLinks.map((link) => ({
   <section class="panel">
     <h2>Studio Email</h2>
     <p>
+      For Boundary Interactive, business, and general studio inquiries:
       <a href={`mailto:${studio.contactEmail}`}>{studio.contactEmail}</a>
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>{game.title} Email</h2>
+    <p>
+      For game support, press, and {game.title}-specific questions:
+      <a href={`mailto:${game.contactEmail}`}>{game.contactEmail}</a>
     </p>
   </section>
 

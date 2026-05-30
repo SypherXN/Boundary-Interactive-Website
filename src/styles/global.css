@@ -448,18 +448,25 @@ li {
 }
 
 .team-card .media-picture {
+  align-self: stretch;
   width: 100%;
-  max-width: 200px;
+  max-width: 100%;
   margin-bottom: 0.75rem;
   flex-shrink: 0;
-}
-
-.team-photo {
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center;
   border-radius: 14px;
   border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.team-card .media-picture > img.team-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border: none;
+  border-radius: 0;
 }
 
 .team-photo-matthew {

@@ -448,21 +448,21 @@ li {
 }
 
 .team-card .media-picture {
-  align-self: stretch;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 0.75rem;
+  width: min(220px, 100%);
+  max-width: 220px;
+  margin: 0 auto 0.75rem;
   flex-shrink: 0;
   border-radius: 14px;
   border: 1px solid var(--border);
   overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
 .team-card .media-picture > img.team-photo {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center top;
   border: none;

@@ -375,9 +375,83 @@ li {
   margin-top: 0.75rem;
 }
 
+.about-studio-panel {
+  display: grid;
+  gap: 0.75rem 1.25rem;
+}
+
+.about-studio-panel > h2 {
+  grid-column: 1 / -1;
+}
+
+.about-studio-copy {
+  min-width: 0;
+}
+
+.about-expo-figure {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+.about-expo-figure .media-picture {
+  margin-inline: auto;
+  max-width: 100%;
+}
+
+.about-expo-caption {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .about-studio-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+    align-items: start;
+  }
+
+  .about-studio-copy {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .about-expo-figure {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.about-team-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .about-team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
 .team-card .media-picture {
-  max-width: 220px;
+  width: 100%;
+  max-width: 200px;
   margin-bottom: 0.75rem;
+  flex-shrink: 0;
 }
 
 .team-photo {
@@ -392,33 +466,25 @@ li {
   object-position: center 24%;
 }
 
-.team-card {
-  text-align: center;
+.team-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+  font-size: 1.2rem;
 }
 
-.team-card h2,
+.team-card-role {
+  margin-top: 0;
+}
+
 .team-card p {
   text-align: center;
-}
-
-.about-expo-figure {
+  max-width: 22rem;
   width: 100%;
-  max-width: 760px;
-  margin: 0.8rem auto 0;
-  text-align: center;
 }
 
-.about-expo-figure .media-picture {
-  margin-inline: auto;
-}
-
-.about-expo-caption {
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.45;
-  text-align: center;
+.team-card-links {
+  margin-top: auto;
+  padding-top: 0.75rem;
 }
 
 .studio-wordmark {
